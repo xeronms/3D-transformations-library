@@ -41,20 +41,20 @@ void Obj::get_points(){
 
 	check_error();
 
-	char c2;
+	char c;
 	std::string data;
 
 	
 	clear_file();
 	
 
-	while ( file.get(c2) ){
+	while ( file.get(c) ){
 		
-		if (c2=='v' ){ // pierwszy znak linijki
+		if (c=='v' ){ // pierwszy znak linijki
 
-			file.get(c2) ;
+			file.get(c) ;
 
-			if (  c2 == ' '){ // upewnienie sie, drugi znak linijki
+			if (  c == ' '){ // upewnienie sie, drugi znak linijki
 
 				getline( file, data);
 
@@ -83,39 +83,43 @@ void Obj::get_points(){
 	clear_file();
 }
 
+
+
 	
 void Obj::get_triangles(){
 
 	check_error();
 
-	char c2;
+	char c;
 	std::string data;
-	//std::string::size_type sz;
 	unsigned int i = 0, j=0;
-	unsigned int index = 0;
+
 
 	clear_file();
 
-	while ( file.get(c2) ){
-		if ( c2 == 'f' ){
-			file.get(c2);
-			if ( c2 == ' ' ){
+	while ( file.get(c) ){
+		if ( c == 'f' ){
+			file.get(c);
+			if ( c == ' ' ){
+				
+				int tab[3];
+
 				getline( file, data);
 				j=0;
 				i=0;
 				while ( i<3 ){
 					if ( data[j] == ' ' ){
-						printf("%d\t",atoi( (data.c_str())+(++j) ));
-						/**t[index].v1 = p[atoi( (data.c_str())+(j) ) - 1];
-						*t[index].v2 = p[atoi( (data.c_str())+(j) ) - 1];  ????
-						*t[index].v2 = p[atoi( (data.c_str())+(j) ) - 1];*/
-						++i;
+						tab [ i++ ] = atoi( (data.c_str())+(++j) ); 
+						//std::cout << tab[i-1] << std::endl;
 					}
+
 					++j;
+
 				}
-				std::cout<<std::endl;
+
+				face.push_back( triangle ( tab ) );
+
 			}
-			++index;
 		}
 	}
 }
