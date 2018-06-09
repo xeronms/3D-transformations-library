@@ -37,7 +37,7 @@ void Obj::check_error(){
 
 
 
-void Obj::get_points(){
+void Obj::load_points(){
 
 	check_error();
 
@@ -86,7 +86,7 @@ void Obj::get_points(){
 
 
 	
-void Obj::get_triangles(){
+void Obj::load_triangles(){
 
 	check_error();
 
@@ -122,6 +122,13 @@ void Obj::get_triangles(){
 			}
 		}
 	}
+}
+
+
+point& Obj::get_v (int i , int j, int n) {
+	// n = 1 gdy mamy numeracje od 1
+	return face[i-n].get_v(vertex, j);
+
 }
 
 

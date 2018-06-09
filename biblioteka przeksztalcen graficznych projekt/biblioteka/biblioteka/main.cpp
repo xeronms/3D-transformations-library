@@ -6,12 +6,12 @@ int main(){
 
 	try{
 
-		Obj cube("cube.obj");
+		Obj cube("diamond.obj");
 
-		cube.get_points();
-		cube.get_triangles();
+		cube.load_points();
+		cube.load_triangles();
 
-
+		std::cout << cube.get_v(5,2).c << std::endl;
 
 
 	}
