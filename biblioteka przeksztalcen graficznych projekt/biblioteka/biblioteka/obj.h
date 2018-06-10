@@ -1,3 +1,7 @@
+#ifndef OBJ_H
+#define OBJ_H
+
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -76,5 +80,21 @@ public:
 	void write();
 
 	void clear_file();
+
+	inline int face_size() const{
+		return face.size();
+	}
+
+
+	 /*std::vector<triangle>& get_faces(){
+		 return face;
+	}
+
+	  std::vector<point>& get_faces(){
+		 return face;
+	}*/
 };
 
+
+
+#endif
