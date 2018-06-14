@@ -56,7 +56,7 @@ void Interpreter::interpretuj(std::string& sciezka,JiMP2::BMP& bmp){
 }
 
 
-bool Interpreter::Ccommad(std::string& data){
+bool Interpreter::Lcommad(std::string& data){
 
 	double xx1, xx2, yy1, yy2;
 	unsigned int rr, gg, bb;
