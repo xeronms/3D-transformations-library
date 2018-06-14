@@ -69,11 +69,17 @@ void Obj::load_points(){
 					idata >> number;
 					
 					tmp[i++] = atoi(number.c_str());
-
+					
 				}
 
 				std::cout << tmp[0] << tmp[1] << tmp[2]<< std::endl;
 				// dodajemy nowy punkt do wektora punktow
+				
+				if (tmp[0] < min.a) min.a = tmp[0];
+				if (tmp[1] < min.b) min.b = tmp[1];
+				if (tmp[2] < min.c) min.c = tmp[2];
+				
+
 				vertex.push_back( point ( tmp ) );
 					
 			}

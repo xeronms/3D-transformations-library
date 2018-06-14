@@ -1,10 +1,10 @@
 #ifndef OBJ_H
 #define OBJ_H
 
-
 #include <iostream>
 #include <fstream>
 #include <vector>
+
 
 
 class point{ //vertex is a point
@@ -13,7 +13,7 @@ public:
 
 
 
-	point(double aa, double bb, double cc): a(aa), b(bb), c(cc){}
+	point(double aa=0, double bb=0, double cc=0): a(aa), b(bb), c(cc){}
 
 	point(double* tab): a(tab[0]), b(tab[1]), c(tab[2]){}
 
@@ -61,8 +61,10 @@ class Obj{
 	std::vector <point> vertex;  // czy moze array!!???? zeby adresy mi sie nie zmieni³y
 	std::vector <triangle> face;
 	
+	
 
 public:
+	point min;
 
 	Obj(std::string);
 	~Obj();
