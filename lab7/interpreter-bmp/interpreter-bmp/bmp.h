@@ -2,7 +2,6 @@
 #define __BMP_H
 
 
-#include "obj.h"
 #include <stdint.h>
 #include <iostream>
 
@@ -63,30 +62,6 @@ public:
 	void circleEmpty(uint16_t x0, uint16_t y0, uint16_t rad, unsigned char r, unsigned char g, unsigned char b);
 	void circleFilled(uint16_t x0, uint16_t y0, uint16_t rad, unsigned char r, unsigned char g, unsigned char b);
 
-    void print_XY( Obj& ob){
-
-		double s = 100; //skala
-
-        for ( int i = 1; i < ob.face_size(); ++i){
-			printl( (ob.get_v(i,1).a + abs(ob.min.a))*s , (ob.get_v(i,1).b + abs(ob.min.b))*s , (ob.get_v(i,2).a + abs(ob.min.a))*s , (ob.get_v(i,2).b + abs(ob.min.b))*s , 0, 0, 0);
-        }	
-    }
-	void print_XZ( Obj& ob){
-
-		double s = 100; //skala
-
-        for ( int i = 1; i < ob.face_size(); ++i){
-			printl( (ob.get_v(i,1).a + abs(ob.min.a))*s , (ob.get_v(i,1).c + abs(ob.min.c))*s , (ob.get_v(i,2).a + abs(ob.min.a))*s , (ob.get_v(i,2).c + abs(ob.min.c))*s , 0, 0, 0);
-        }	
-    }
-	void print_YZ( Obj& ob){
-
-		double s = 100; //skala
-
-        for ( int i = 1; i < ob.face_size(); ++i){
-			printl( (ob.get_v(i,1).b + abs(ob.min.b))*s , (ob.get_v(i,1).c + abs(ob.min.c))*s , (ob.get_v(i,2).b + abs(ob.min.b))*s , (ob.get_v(i,2).c + abs(ob.min.c))*s , 0, 0, 0);
-        }	
-    }
 	
 	friend std::ostream& operator<<(std::ostream& os, const BMP& bmp);
 };
