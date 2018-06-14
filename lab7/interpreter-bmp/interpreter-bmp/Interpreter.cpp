@@ -63,7 +63,7 @@ bool Interpreter::Lcommad(std::string& data){
 	std::istringstream iss(data);
 
 	iss>>xx1>>yy1>>xx2>>yy2>>rr>>gg>>bb;
-
+	std::cout << rr<<gg<<bb <<std::endl<< std::endl;
 	//if ( rr > 255 || gg > 255 || bb > 255 ) return false;
 
 	x1 = xx1;
