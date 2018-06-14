@@ -64,7 +64,7 @@ bool Interpreter::Lcommad(std::string& data){
 
 	iss>>xx1>>yy1>>xx2>>yy2>>rr>>gg>>bb;
 
-	if ( rr > 255 || gg > 255 || bb > 255 ) return false;
+	//if ( rr > 255 || gg > 255 || bb > 255 ) return false;
 
 	x1 = xx1;
 	y1 = yy1;
