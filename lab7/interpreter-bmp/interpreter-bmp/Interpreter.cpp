@@ -18,10 +18,12 @@ void Interpreter::interpretuj(std::string& sciezka,JiMP2::BMP& bmp){
     while (plik.get(c)){
 		plik.get(c2);
         getline(plik, data);
+		++obecna_linia;
+
         switch (c) {
         case 'l':
         case 'L':
-			if ( ! Lcommad( data ) ) throw line_error(1);
+			if ( Lcommad( data ) == false ) throw  line_error( obecna_linia );
             //std::cout << x1 << y1 << x2 <<y2 << (int)r <<std::endl<< std::endl;
             rys.printl(bmp,(uint16_t) x1,(uint16_t) y1,(uint16_t) x2,(uint16_t) y2, r,g,b);
             break;
@@ -64,7 +66,7 @@ bool Interpreter::Lcommad(std::string& data){
 
 	iss>>xx1>>yy1>>xx2>>yy2>>rr>>gg>>bb;
 	std::cout << rr<<gg<<bb <<std::endl<< std::endl;
-	//if ( rr > 255 || gg > 255 || bb > 255 ) return false;
+	if ( rr > 255 || gg > 255 || bb > 255 ) return false;
 
 	x1 = xx1;
 	y1 = yy1;
