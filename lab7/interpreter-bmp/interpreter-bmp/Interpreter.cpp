@@ -20,7 +20,7 @@ void Interpreter::interpretuj(std::string& sciezka,JiMP2::BMP& bmp){
         switch (c) {
         case 'l':
         case 'L':
-			if ( ! Lcommad ) throw line_error(1);
+			if ( ! Lcommad( data ) ) throw line_error(1);
             //std::cout << x1 << y1 << x2 <<y2 << (int)r <<std::endl<< std::endl;
             rys.printl(bmp,(uint16_t) x1,(uint16_t) y1,(uint16_t) x2,(uint16_t) y2, r,g,b);
             break;
