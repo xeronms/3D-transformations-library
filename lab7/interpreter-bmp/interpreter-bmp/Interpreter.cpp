@@ -58,17 +58,20 @@ void Interpreter::interpretuj(std::string& sciezka,JiMP2::BMP& bmp){
 bool Interpreter::Ccommad(std::string& data){
 
 	double xx1, xx2, yy1, yy2;
-	int rr, gg, bb;
+	unsigned int rr, gg, bb;
 	std::istringstream iss(data);
 
-	iss>>xx1>>yy1>>xx2>>yy2>>r>>g>>b;
+	iss>>xx1>>yy1>>xx2>>yy2>>rr>>gg>>bb;
 
-	if (r>255||r<0, g>255||g<0, b>255||b<0) return false;
+	if ( rr > 255 || gg > 255 || bb > 255 ) return false;
 
 	x1 = xx1;
 	y1 = yy1;
 	x2 = xx2;
 	y2 = yy2;
+	r = rr;
+	g = gg;
+	b = bb;
 
 	return true;
 }
