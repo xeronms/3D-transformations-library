@@ -12,10 +12,11 @@ void Interpreter::interpretuj(std::string& sciezka,JiMP2::BMP& bmp){
     std::string data;
     std::string::size_type sz;
     int i;
-    char c;
+    char c, c2;
 	int obecna_linia = 0;
 
     while (plik.get(c)){
+		plik.get(c2);
         getline(plik, data);
         switch (c) {
         case 'l':
