@@ -10,83 +10,101 @@
 using namespace JiMP2;
 
 
-void RysownikImplementacja::printl(BMP& bmp, uint16_t  x1, uint16_t y1, uint16_t x2, uint16_t y2, unsigned char r, unsigned char g, unsigned char b)const{
-        double deltax = x2-x1;
-        double deltay = y2-y1;
-
-        if (abs(deltay) > abs(deltax)){
-                if (y1 > y2) 	printl(bmp,y2, x2, y1, x1,r,g,b);
-                else	 printl(bmp,y1, x1, y2, x2, r,g,b);
-        }
-        else{
-                if (x1 > x2)	 printl(bmp,x2,y2,x1,x2,r,g,b);
-                else{
-                        uint16_t x, y;
-                        y = y1;
-                        double deltaerr = abs(deltay/deltax);
-                        double error = 0;
-                        for (x=x1; x<=x2; ++x){
-                                bmp.setPixel(x,y,r,g,b);
-                                error += deltaerr;
-                                while (error >= 0.5){
-                                        y += ((deltay > 0) ? 1 : -1);
-                                        error -= 1;
-                                }
-                        }
-                }
-        }
+void RysownikImplementacja::printl(JiMP2::BMP &bmp,uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, unsigned char r, unsigned char g, unsigned char b) const {
+	if( abs(y2-y1)<abs(x2-x1)){
+		if(x1>x2){
+			std::swap(x1,x2);
+			std::swap(y1,y2);
+		}
+		float xx=x2-x1;
+		float yy=y2-y1;
+		int yi=1;
+		if(yy<0){
+			yi=-1;
+			yy=-yy;
+		}
+		float dd=yy*2-xx;
+		int j=y1;
+		for(int i=x1; i<=x2; ++i){
+			bmp.setPixel(i,j,r,g,b);
+			if( dd>0){
+				j+=yi;
+				dd-=xx*2;
+			}
+			dd+=yy*2;
+		}
+	}
+	else{
+		if(y1>y2){
+			std::swap(x1,x2);
+			std::swap(y1,y2);
+		}
+		float xx=x2-x1;
+		float yy=y2-y1;
+		int xi=1;
+		if(xx<0){
+			xi=-1;
+			xx=-xx;
+		}
+		float dd=yy*2-xx;
+		int k=x1;
+		for(int l=y1; l<=y2;++l){
+			bmp.setPixel(k,l,r,g,b);
+			if( dd>0){
+				k+=xi;
+				dd-=yy*2;
+			}
+			dd+=xx*2;
+		}
+ 	}
 }
-
-void RysownikImplementacja::circleEmpty(BMP& bmp, uint16_t x0, uint16_t y0, uint16_t rad, unsigned char r, unsigned char g, unsigned char b)const{
-    int x = rad-1, y = 0;
-    int dx = 1, dy = 1;
-    int err = dx - (rad << 1);
-
-    while (x >= y){
-        bmp.setPixel(x0 + x, y0 + y, r,g,b);
-        bmp.setPixel(x0 + y, y0 + x, r, g ,b);
-        bmp.setPixel(x0 - y, y0 + x, r, g ,b);
-        bmp.setPixel(x0 - x, y0 + y, r, g ,b);
-        bmp.setPixel(x0 - x, y0 - y, r, g ,b);
-        bmp.setPixel(x0 - y, y0 - x, r, g ,b);
-        bmp.setPixel(x0 + y, y0 - x, r, g ,b);
-        bmp.setPixel(x0 + x, y0 - y, r, g ,b);
-
-        if (err <= 0){
-                y++;
-                err += dy;
-                dy += 2;
+void RysownikImplementacja::circleEmpty(JiMP2::BMP &bmp,uint16_t x0, uint16_t y0, uint16_t rad, unsigned char r, unsigned char g, unsigned char b) const {
+	int x=rad-1;
+	int y=0;
+	int xx=1;
+	int yy=1;
+	int a=xx-rad*2;
+	while (x>=y){
+		bmp.setPixel(x0+x,y0+y,r,g,b);
+		bmp.setPixel(x0+x,y0-y,r,g,b);
+       	bmp.setPixel(x0+y,y0+x,r,g,b);
+       	bmp.setPixel(x0+y,y0-x,r,g,b);
+       	bmp.setPixel(x0-x,y0+y,r,g,b);
+       	bmp.setPixel(x0-x,y0-y,r,g,b);
+       	bmp.setPixel(x0-y,y0+x,r,g,b);
+       	bmp.setPixel(x0-y,y0-x,r,g,b);
+       	if (a<=0){
+           	a+=yy;
+           	yy+=2;
+           	++y;
+       	}
+       	if (a>0){
+       		a+=xx-(rad*2);
+           	xx+=2;
+           	--x;      	
         }
-        if (err > 0){
-                x--;
-                dx += 2;
-                err += dx - (rad << 1);
-        }
-    }
+	}
 }
-
-void RysownikImplementacja::circleFilled(BMP& bmp, uint16_t x0, uint16_t y0, uint16_t rad, unsigned char r, unsigned char g, unsigned char b)const{
-    int x = rad-1, y = 0;
-    int dx = 1, dy = 1;
-    int err = dx - (rad << 1);
-
-    while (x >= y){
-        printl(bmp, x0-y, y0-x,  x0+y, y0-x,  r, g ,b);
-        printl(bmp, x0-y, y0+x,  x0+y, y0+x,  r, g ,b);
-        printl(bmp, x0-x, y0-y,  x0+x, y0-y,  r, g ,b);
-        printl(bmp, x0-x, y0+y,  x0+x, y0+y,  r, g ,b);
-
-
-        if (err <= 0){
-                y++;
-                err += dy;
-                dy += 2;
-        }
-        if (err > 0){
-                x--;
-                dx += 2;
-                err += dx - (rad << 1);
-        }
-    }
-}
-
+void RysownikImplementacja::circleFilled(JiMP2::BMP &bmp,uint16_t x0, uint16_t y0, uint16_t rad, unsigned char r, unsigned char g, unsigned char b) const {
+		int x=rad-1;
+		int y=0;
+		int xx=1;
+		int yy=1;
+		int a=xx-rad*2;
+		while (x>=y){
+			printl(bmp,x0-y,y0-x,x0+y,y0-x,r,g,b);
+			printl(bmp,x0-x,y0-y,x0+x,y0-y,r,g,b);
+        	printl(bmp,x0-y,y0+x,x0+y,y0+x,r,g,b);
+        	printl(bmp,x0-x,y0+y,x0+x,y0+y,r,g,b);
+       		if (a<=0){
+            	a+=yy;
+            	yy+=2;
+            	++y;
+        	}
+        	if (a>0){
+            	xx+=2;
+            	a+=xx-rad*2;
+            	--x;
+        	}
+		}
+	}
