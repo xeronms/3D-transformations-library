@@ -33,7 +33,7 @@ public:
 
 	void interpretuj(std::string& sciezka, JiMP2::BMP& bmp);
 
-	bool 
+	//bool 
 
 
 };
