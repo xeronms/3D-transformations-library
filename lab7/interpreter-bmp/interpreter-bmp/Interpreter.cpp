@@ -3,6 +3,7 @@
 #include "Interpreter.h"
 #include <fstream>
 #include <string>
+#include <sstream>
 
 void Interpreter::interpretuj(std::string& sciezka,JiMP2::BMP& bmp){
     std::ifstream plik;
@@ -19,13 +20,7 @@ void Interpreter::interpretuj(std::string& sciezka,JiMP2::BMP& bmp){
         switch (c) {
         case 'l':
         case 'L':
-            x1=std::stod( data, &sz );
-            y1=std::stod( data.substr(sz) );
-            x2=std::stod( data.substr(sz) );
-            y2=std::stod( data.substr(sz) );
-            r=std::stod( data.substr(sz) );
-            g=std::stod( data.substr(sz) );
-            b=std::stod( data.substr(sz) );
+			if ( ! Lcommad ) throw line_error(1);
             //std::cout << x1 << y1 << x2 <<y2 << (int)r <<std::endl<< std::endl;
             rys.printl(bmp,(uint16_t) x1,(uint16_t) y1,(uint16_t) x2,(uint16_t) y2, r,g,b);
             break;
@@ -57,4 +52,23 @@ void Interpreter::interpretuj(std::string& sciezka,JiMP2::BMP& bmp){
     }
 
     plik.close();
+}
+
+
+bool Interpreter::Ccommad(std::string& data){
+
+	double xx1, xx2, yy1, yy2;
+	int rr, gg, bb;
+	std::istringstream iss(data);
+
+	iss>>xx1>>yy1>>xx2>>yy2>>r>>g>>b;
+
+	if (r>255||r<0, g>255||g<0, b>255||b<0) return false;
+
+	x1 = xx1;
+	y1 = yy1;
+	x2 = xx2;
+	y2 = yy2;
+
+	return true;
 }
