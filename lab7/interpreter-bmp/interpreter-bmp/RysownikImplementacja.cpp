@@ -108,3 +108,32 @@ void RysownikImplementacja::circleFilled(JiMP2::BMP &bmp,uint16_t x0, uint16_t y
         	}
 		}
 	}
+
+void RysownikImplementacja::archEmpty(JiMP2::BMP& bmp, uint16_t x0, uint16_t y0, uint16_t rad, uint16_t beg, uint16_t end, unsigned char r, unsigned char g, unsigned char b) const {
+
+    double i=0;
+    while(i<2*3.14){
+        if(i*180/3.14>=beg&&i*180/3.14<=end){
+                if((x0+int(sin(i)*(rad)))<bmp.w && (y0-int(cos(i)*(rad)))<bmp.h){
+                    bmp.setPixel(x0+int(sin(i)*(rad)), y0-int(cos(i)*(rad)), r,g,b);
+                }
+            }
+		i+=0.001;
+    }
+}
+
+
+void RysownikImplementacja::archFilled(JiMP2::BMP& bmp, uint16_t x0, uint16_t y0, uint16_t rad, uint16_t beg, uint16_t end, unsigned char r, unsigned char g, unsigned char b) const {
+
+    for(int j=rad;j>=0;j--){
+        double i=0;
+        while(i<2*3.14){
+            if(i*180/3.14>=beg&&i*180/3.14<=end){
+                if((x0+int(sin(i)*(rad-j)))<bmp.w && (y0-int(cos(i)*(rad-j)))<bmp.h){
+                    bmp.setPixel(x0+int(sin(i)*(rad-j)), y0-int(cos(i)*(rad-j)), r,g,b);
+                }
+            }
+            i+=0.001;
+        }
+    }
+}

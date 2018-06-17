@@ -48,8 +48,10 @@ class BMP {
 	BMPFileHeader bmpFileHeader;
 	BitmapCoreHeader bitmapCoreHeader;
 	unsigned char* pixelData;
+	
 
 public:
+	uint16_t w,h;
 
 	BMP(uint16_t width, uint16_t height);
 	virtual ~BMP();
@@ -61,6 +63,8 @@ public:
 	void printl(uint16_t  x1, uint16_t y1, uint16_t x2, uint16_t y2, unsigned char r, unsigned char g, unsigned char b);
 	void circleEmpty(uint16_t x0, uint16_t y0, uint16_t rad, unsigned char r, unsigned char g, unsigned char b);
 	void circleFilled(uint16_t x0, uint16_t y0, uint16_t rad, unsigned char r, unsigned char g, unsigned char b);
+	void archEmpty(uint16_t x0, uint16_t y0, uint16_t rad, uint16_t beg, uint16_t end, unsigned char r, unsigned char g, unsigned char b);
+	void archFilled(uint16_t x0, uint16_t y0, uint16_t rad, uint16_t beg, uint16_t end, unsigned char r, unsigned char g, unsigned char b);
 
 	
 	friend std::ostream& operator<<(std::ostream& os, const BMP& bmp);

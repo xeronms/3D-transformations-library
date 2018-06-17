@@ -5,14 +5,15 @@
 #include <cstring>
 #include <cmath>
 #include <vector>
-
+#define M_PI 3.14
 
 using namespace std;
 
 namespace JiMP2 {
 
 BMP::BMP(uint16_t width, uint16_t height) :
-		bitmapCoreHeader(width, height) {
+		bitmapCoreHeader(width, height) ,
+		w(width),h(height){
 
 	assert(IS_LITTLE_ENDIAN);
 	assert(width > 0);
@@ -157,6 +158,34 @@ void BMP::circleFilled(uint16_t x0, uint16_t y0, uint16_t rad, unsigned char r, 
 }
 
 
+void BMP::archEmpty(uint16_t x0, uint16_t y0, uint16_t rad, uint16_t beg, uint16_t end, unsigned char r, unsigned char g, unsigned char b){
+
+    double i=0;
+    while(i<2*M_PI){
+        if(i*180/M_PI>=beg&&i*180/M_PI<=end){
+                if((x0+int(sin(i)*(rad)))<w && (y0-int(cos(i)*(rad)))<h){
+                    setPixel(x0+int(sin(i)*(rad)), y0-int(cos(i)*(rad)), r,g,b);
+                }
+            }
+		i+=0.001;
+    }
+}
+
+
+void BMP::archFilled(uint16_t x0, uint16_t y0, uint16_t rad, uint16_t beg, uint16_t end, unsigned char r, unsigned char g, unsigned char b){
+
+    for(int j=rad;j>=0;j--){
+        double i=0;
+        while(i<2*M_PI){
+            if(i*180/M_PI>=beg&&i*180/M_PI<=end){
+                if((x0+int(sin(i)*(rad-j)))<w && (y0-int(cos(i)*(rad-j)))<h){
+                    setPixel(x0+int(sin(i)*(rad-j)), y0-int(cos(i)*(rad-j)), r,g,b);
+                }
+            }
+            i+=0.001;
+        }
+    }
+}
 
 }
 /*

@@ -21,38 +21,72 @@ void Interpreter::interpretuj(std::string& sciezka,JiMP2::BMP& bmp){
 		++obecna_linia;
 
         switch (c) {
+
+
         case 'l':
         case 'L':
 
-			if ( Lcommad( data ) == false ) throw  line_error( obecna_linia );
+			if ( Lcommand( data ) == false ) throw  line_error( obecna_linia );
             //std::cout << x1 << y1 << x2 <<y2 << (int)r <<std::endl<< std::endl;
             rys.printl(bmp,(uint16_t) x1,(uint16_t) y1,(uint16_t) x2,(uint16_t) y2, r,g,b);
-            
+
+            ++obecna_linia;
+			
 			break;
+
 
         case 'c':
         case 'C':
-            x1=std::stod( data, &sz );
-            y1=std::stod( data.substr(sz) );
-            rad=std::stod( data.substr(sz) );
-            r=std::stod( data.substr(sz) );
-            g=std::stod( data.substr(sz) );
-            b=std::stod( data.substr(sz) );
-            rys.circleEmpty(bmp,(uint16_t) x1,(uint16_t) y1,(uint16_t) rad,r,g,b);
-            break;
+
+			if ( Ccommand( data ) == false ) throw  line_error( obecna_linia );
+            
+			rys.circleEmpty(bmp,(uint16_t) x1,(uint16_t) y1,(uint16_t) rad,r,g,b);
+            
+			++obecna_linia;
+			
+			break;
+
+
         case 'd':
         case 'D':
-            x1=std::stod( data, &sz );
-            y1=std::stod( data.substr(sz) );
-            rad=std::stod( data.substr(sz) );
-            r=std::stod( data.substr(sz) );
-            g=std::stod( data.substr(sz) );
-            b=std::stod( data.substr(sz) );
-            //std::cout << x1 << y1 << rad << (int)r <<std::endl<< std::endl;
-            rys.circleFilled(bmp,(uint16_t) x1,(uint16_t) y1,(uint16_t) rad,r,g,b);
+
+            if ( Dcommand( data ) == false ) throw  line_error( obecna_linia );
+            
+			rys.circleFilled(bmp,(uint16_t) x1,(uint16_t) y1,(uint16_t) rad,r,g,b);
+            
+			++obecna_linia;
+			
             break;
+
+			
+		case 'a':
+        case 'A':
+
+            if ( Dcommand( data ) == false ) throw  line_error( obecna_linia );
+            
+			rys.archEmpty(bmp,(uint16_t) x1,(uint16_t) y1,(uint16_t) rad,r,g,b);
+            
+			++obecna_linia;
+			
+            break;
+
+			
+		case 's':
+        case 'S':
+
+            if ( Dcommand( data ) == false ) throw  line_error( obecna_linia );
+            
+			rys.archFilled(bmp,(uint16_t) x1,(uint16_t) y1,(uint16_t) rad,r,g,b);
+            
+			++obecna_linia;
+			
+            break;
+
+
         default:
+
             break;
+
         }
         ++i;
     }
@@ -61,7 +95,7 @@ void Interpreter::interpretuj(std::string& sciezka,JiMP2::BMP& bmp){
 }
 
 
-bool Interpreter::Lcommad(std::string& data){
+bool Interpreter::Lcommand(std::string& data){
 
 	double xx1, xx2, yy1, yy2;
 	unsigned int rr, gg, bb;
@@ -75,6 +109,74 @@ bool Interpreter::Lcommad(std::string& data){
 	y1 = yy1;
 	x2 = xx2;
 	y2 = yy2;
+	r = rr;
+	g = gg;
+	b = bb;
+
+	return true;
+}
+
+
+bool Interpreter::Ccommand(std::string& data){
+
+	unsigned int rr, gg, bb;
+	std::istringstream iss(data);
+
+	iss>>x1>>y1>>rad>>rr>>gg>>bb;
+
+	if ( rr > 255 || gg > 255 || bb > 255 ) return false;
+
+	r = rr;
+	g = gg;
+	b = bb;
+
+	return true;
+}
+
+
+bool Interpreter::Dcommand(std::string& data){
+
+	unsigned int rr, gg, bb;
+	std::istringstream iss(data);
+
+	iss>>x1>>y1>>rad>>rr>>gg>>bb;
+
+	if ( rr > 255 || gg > 255 || bb > 255 ) return false;
+
+	r = rr;
+	g = gg;
+	b = bb;
+
+	return true;
+}
+
+
+bool Interpreter::Acommand(std::string& data){
+
+	unsigned int rr, gg, bb;
+	std::istringstream iss(data);
+
+	iss>>x1>>y1>>rad>>beg>>end>>rr>>gg>>bb;
+
+	if ( rr > 255 || gg > 255 || bb > 255 ) return false;
+
+	r = rr;
+	g = gg;
+	b = bb;
+
+	return true;
+}
+
+
+bool Interpreter::Scommand(std::string& data){
+
+	unsigned int rr, gg, bb;
+	std::istringstream iss(data);
+
+	iss>>x1>>y1>>rad>>beg>>end>>rr>>gg>>bb;
+
+	if ( rr > 255 || gg > 255 || bb > 255 ) return false;
+
 	r = rr;
 	g = gg;
 	b = bb;

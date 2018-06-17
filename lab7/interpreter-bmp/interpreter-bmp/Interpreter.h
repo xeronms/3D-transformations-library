@@ -20,18 +20,22 @@ struct line_error{
 
 class Interpreter{
 
-	double x1,y1,x2,y2,rad;
+	double x1,y1,x2,y2,rad,beg,end;
 
     unsigned char r,g,b;
 
     RysownikImplementacja rys;
 
 
-	bool Lcommad(std::string& data);
+	bool Lcommand(std::string& data);
 
-	bool Ccommad(std::string& data);
+	bool Ccommand(std::string& data);
 
 	bool Dcommand(std::string& data);
+
+	bool Acommand(std::string& data);
+
+	bool Scommand(std::string& data);
 
 
 public:
