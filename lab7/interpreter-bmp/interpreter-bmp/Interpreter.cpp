@@ -62,7 +62,7 @@ void Interpreter::interpretuj(std::string& sciezka,JiMP2::BMP& bmp){
 		case 'a':
         case 'A':
 
-            if ( Dcommand( data ) == false ) throw  line_error( obecna_linia );
+            if ( Acommand( data ) == false ) throw  line_error( obecna_linia );
             
 			rys.archEmpty(bmp,(uint16_t) x1,(uint16_t) y1,(uint16_t) rad,(uint16_t) beg,(uint16_t) end,r,g,b);
             
@@ -74,7 +74,7 @@ void Interpreter::interpretuj(std::string& sciezka,JiMP2::BMP& bmp){
 		case 's':
         case 'S':
 
-            if ( Dcommand( data ) == false ) throw  line_error( obecna_linia );
+            if ( Scommand( data ) == false ) throw  line_error( obecna_linia );
             
 			rys.archFilled(bmp,(uint16_t) x1,(uint16_t) y1,(uint16_t) rad,(uint16_t) beg,(uint16_t) end,r,g,b);
             
