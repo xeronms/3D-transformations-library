@@ -1,31 +1,18 @@
 #include "obj.h"
-#include "bmp.h"
+#include "matrix.h"
 
 int main(){
 
+	
 
 	try{
 
-		Obj cube("diamond.obj");
+		Obj object("ground.obj");
 
-		cube.load_points();
-		cube.load_triangles();
+		object.load_points();
+		object.load_triangles();
 
-		//std::cout << cube.get_v(5,2).c << std::endl;
-		// za pomoc¹ dostêpu get_v probujemy przekezac to do bmp
-
-        const uint16_t imgWidth = 800;
-	const uint16_t imgHeight = 600;
-
-	JiMP2::BMP bmp(imgWidth, imgHeight);
-
-	bmp.print_XY(cube);
-	
-	std::ofstream outfile("test.bmp", std::ofstream::binary);
-	outfile << bmp;
-
-	std::cout << "end." << std::endl;
-
+		object.save_file();
 
         }
 

@@ -7,11 +7,9 @@
 
 
 
-class point{ //vertex is a point
-public:
+struct point{ //vertex is a point
+
 	double a,b,c;
-
-
 
 	point(double aa=0, double bb=0, double cc=0): a(aa), b(bb), c(cc){}
 
@@ -22,11 +20,9 @@ public:
 
 
 
-class triangle{
+struct triangle{
 
 	int v1, v2, v3;
-
-public:
 
 	
 	triangle(int p1, int p2, int p3): v1(p1), v2(p2), v3(p3) {}
@@ -57,6 +53,7 @@ struct file_error{};
 class Obj{
 
 	std::fstream file;
+	std::string name;
 	
 	std::vector <point> vertex;  // czy moze array!!???? zeby adresy mi sie nie zmieni³y
 	std::vector <triangle> face;
@@ -86,6 +83,12 @@ public:
 	inline int face_size() const{
 		return face.size();
 	}
+
+	// transformation:
+
+	void save_file() ;
+
+	
 
 
 	 /*std::vector<triangle>& get_faces(){
