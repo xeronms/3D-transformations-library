@@ -4,7 +4,6 @@
 #include <string>
 #include <sstream>
 #include <vector>
-//#include "cube.obj"
 
 
 Obj::Obj(std::string file_name) : name(file_name) {
@@ -144,6 +143,16 @@ point& Obj::get_v (int i , int j, int n) {
 	return face[i-n].get_v(vertex, j);
 
 }
+
+
+
+void Obj::transform ( const Transformation & T){
+
+	T.get_transformation_matrix();
+
+}
+
+
 
 
 void Obj::save_file () {

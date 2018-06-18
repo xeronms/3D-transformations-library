@@ -1,5 +1,6 @@
 #include "obj.h"
 #include "matrix.h"
+#include "transformation.h"
 
 int main(){
 
@@ -12,13 +13,12 @@ int main(){
 		object.load_points();
 		object.load_triangles();
 
-		object.save_file();
+		//object.save_file();
 
+		
         }
 
         catch (file_error){ printf("ERR\n");}
-
-
 
 	return 0;
 }

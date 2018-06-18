@@ -1,6 +1,7 @@
-#ifndef OBJ_H
-#define OBJ_H
+#ifndef _OBJ_H
+#define _OBJ_H
 
+#include "transformation.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -55,6 +56,7 @@ class Obj{
 	std::fstream file;
 	std::string name;
 	
+
 	std::vector <point> vertex;  // czy moze array!!???? zeby adresy mi sie nie zmieni³y
 	std::vector <triangle> face;
 	
@@ -86,9 +88,9 @@ public:
 
 	// transformation:
 
-	void save_file() ;
+	void transform ( const Transformation & t ) ;
 
-	
+	void save_file() ;
 
 
 	 /*std::vector<triangle>& get_faces(){
