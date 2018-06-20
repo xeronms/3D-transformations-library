@@ -82,6 +82,7 @@
     <ClCompile Include="transformation.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resources.h" />
     <ClInclude Include="matrix.h" />
     <ClInclude Include="obj.h" />
     <ClInclude Include="transformation.h" />

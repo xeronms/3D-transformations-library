@@ -2,7 +2,7 @@
 #define TRANS_H
 
 #include "matrix.h"
-#include "obj.h"
+//#include "obj.h"
 
 #include <vector>
 #include <stack>

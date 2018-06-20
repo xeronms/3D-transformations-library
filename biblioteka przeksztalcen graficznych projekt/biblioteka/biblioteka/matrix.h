@@ -5,9 +5,9 @@
 #define MAT_H
 
 
-
-#include "obj.h"
 #include <string>
+#include "resources.h"
+
 
 #define INDEX r*i+j
 

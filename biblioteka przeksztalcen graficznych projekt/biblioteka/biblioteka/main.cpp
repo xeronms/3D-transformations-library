@@ -1,6 +1,8 @@
-#include "obj.h"
 #include "matrix.h"
 #include "transformation.h"
+#include "obj.h"
+
+
 
 int main(){
 

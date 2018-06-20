@@ -138,6 +138,7 @@ void Obj::load_triangles(){
 }
 
 
+
 point& Obj::get_v (int i , int j, int n) {
 	// n = 1 gdy mamy numeracje od 1
 	return face[i-n].get_v(vertex, j);
@@ -145,13 +146,16 @@ point& Obj::get_v (int i , int j, int n) {
 }
 
 
+/*				ERROR 
 
 void Obj::transform ( const Transformation & T){
 
-	T.get_transformation_matrix();
+	T.get_transformation_matrix() * Matrix ( vertex[0] );
+
+
 
 }
-
+*/
 
 
 
