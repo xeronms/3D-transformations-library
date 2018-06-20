@@ -15,7 +15,13 @@ int main(){
 		object.load_points();
 		object.load_triangles();
 
-		//object.save_file();
+		Transformation T;
+
+		T.translation(-5,-5,-5);
+
+		object.transform( T );
+
+		object.save_file();
 
 		
         }

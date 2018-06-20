@@ -146,16 +146,18 @@ point& Obj::get_v (int i , int j, int n) {
 }
 
 
-/*				ERROR 
 
 void Obj::transform ( const Transformation & T){
 
-	T.get_transformation_matrix() * Matrix ( vertex[0] );
+	for ( std::vector<point>::iterator it = vertex.begin(); it != vertex.end(); ++it ){
 
+		Matrix tmp = T.get_transformation_matrix() * Matrix ( *it );
 
-
+		(*it).a = tmp ( 4, 1);
+		(*it).b = tmp ( 4, 2);
+		(*it).c = tmp ( 4, 3);
+	}
 }
-*/
 
 
 

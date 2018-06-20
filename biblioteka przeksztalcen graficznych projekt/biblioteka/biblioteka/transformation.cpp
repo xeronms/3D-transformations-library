@@ -17,9 +17,8 @@ Matrix Transformation::translation( double dx, double dy, double dz ) {
 
 
 
-/*const Matrix& get_transformation_matrix() const {
+const Matrix& Transformation::get_transformation_matrix() const {
 
 	return matrix_stack.top();
 
 }
-*/

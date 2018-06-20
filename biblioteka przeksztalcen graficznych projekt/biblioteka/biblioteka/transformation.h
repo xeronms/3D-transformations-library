@@ -21,10 +21,6 @@ class Transformation{
 
 public:
 
-	Transformation();
-
-	virtual ~Transformation();
-
 	Matrix translation( double dx, double dy, double dz ); // dostajemy macierz przeksztalcen, dodajemy ja na stos i pozniej mnozymy przez nastepne przeksztalcenia. 
 
 	Matrix scaling( double sx, double sy, double sz );
