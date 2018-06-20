@@ -4,15 +4,14 @@
 
 
 
-Matrix Transformation::translation( double dx, double dy, double dz ) {
+const Matrix& Transformation::translation( double dx, double dy, double dz ) {
+	 
 
-	Matrix A (4, 4);
+	matrix_stack.emplace( Matrix( 4, 4) );
 
-	A.translation_init ( dx, dy, dz);
+	matrix_stack.top().translation_init( dx, dy, dz );
 
-	matrix_stack.push( A );
-
-	return A;
+	return matrix_stack.top();
 }
 
 

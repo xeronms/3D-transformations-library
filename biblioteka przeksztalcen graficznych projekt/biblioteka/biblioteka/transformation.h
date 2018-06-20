@@ -11,9 +11,7 @@
 
 class Transformation{
 
-	//Matrix transformation_matrix;
-
-	std::stack<Matrix> matrix_stack; // std::stack?      
+	static std::stack<Matrix> matrix_stack; // std::stack?      
 
 	//std::vector<point> vertexes;
 
@@ -21,17 +19,17 @@ class Transformation{
 
 public:
 
-	Matrix translation( double dx, double dy, double dz ); // dostajemy macierz przeksztalcen, dodajemy ja na stos i pozniej mnozymy przez nastepne przeksztalcenia. 
+	const Matrix& translation( double dx, double dy, double dz ); // dostajemy macierz przeksztalcen, dodajemy ja na stos i pozniej mnozymy przez nastepne przeksztalcenia. 
 
-	Matrix scaling( double sx, double sy, double sz );
+	const Matrix& scaling( double sx, double sy, double sz );
 	 
-	Matrix rotation();
+	const Matrix& rotation();
 
 	//std::vector<point> transform( const std::vector<point> & ) const ; // daje koncowy efekt, mozemy tez zrobic funkcje w obj ktora przyjmuje za argument klase Transformation
 	
 	// transformation() function in obj class
 
-	const Matrix& get_transformation_matrix() const ;
+	const Matrix& get_transformation_matrix() const ; 
 
 };
 

@@ -17,7 +17,7 @@ int main(){
 
 		Transformation T;
 
-		T.translation(-5,-5,-5);
+		T.translation(0.1,0.1,0.1);
 
 		object.transform( T );
 

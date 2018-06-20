@@ -153,9 +153,11 @@ void Obj::transform ( const Transformation & T){
 
 		Matrix tmp = T.get_transformation_matrix() * Matrix ( *it );
 
+		std::cout << "v " << (*it).a << " " << (*it).b << " " << (*it).c << "\n" ;
 		(*it).a = tmp ( 4, 1);
 		(*it).b = tmp ( 4, 2);
 		(*it).c = tmp ( 4, 3);
+		std::cout  << "v " << (*it).a << " " << (*it).b << " " << (*it).c << "\n" ;
 	}
 }
 
