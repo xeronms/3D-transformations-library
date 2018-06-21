@@ -8,8 +8,8 @@
 #include <string>
 #include "resources.h"
 
-
-#define INDEX r*i+j
+// changed index from r*i+j to that:
+#define INDEX c*i+j
 
 typedef unsigned int uint;
 
@@ -19,8 +19,10 @@ class error{
 protected:
 	error(){	printf("ERR\n");}
 };
-	class size_err : public error{};
-	class zero_err : public error{};
+
+class size_err : public error{};
+
+class zero_err : public error{};
 
 
 

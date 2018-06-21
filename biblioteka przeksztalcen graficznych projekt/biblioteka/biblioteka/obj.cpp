@@ -152,11 +152,10 @@ void Obj::transform ( const Transformation & T){
 	for ( std::vector<point>::iterator it = vertex.begin(); it != vertex.end(); ++it ){
 
 		Matrix tmp = T.get_transformation_matrix() * Matrix ( *it );
-
-		std::cout << "v " << (*it).a << " " << (*it).b << " " << (*it).c << "\n" ;
-		(*it).a = tmp ( 4, 1);
-		(*it).b = tmp ( 4, 2);
-		(*it).c = tmp ( 4, 3);
+		tmp.rysuj();
+		(*it).a = tmp ( 0, 0);
+		(*it).b = tmp ( 1, 0);
+		(*it).c = tmp ( 2, 0);
 		std::cout  << "v " << (*it).a << " " << (*it).b << " " << (*it).c << "\n" ;
 	}
 }

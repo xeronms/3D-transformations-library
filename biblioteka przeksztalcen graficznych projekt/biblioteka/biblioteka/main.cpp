@@ -17,7 +17,7 @@ int main(){
 
 		Transformation T;
 
-		T.translation(0.1,0.1,0.1);
+		T.translation(15.1, 1.1, 1.1).rysuj();
 
 		object.transform( T );
 
@@ -25,8 +25,7 @@ int main(){
 
 		
         }
-
+		catch (error){ printf("ERRrrrr\n");}
         catch (file_error){ printf("ERR\n");}
-
 	return 0;
 }

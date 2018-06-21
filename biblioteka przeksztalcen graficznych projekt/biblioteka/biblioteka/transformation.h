@@ -11,7 +11,7 @@
 
 class Transformation{
 
-	static std::stack<Matrix> matrix_stack; // std::stack?      
+	std::stack<Matrix> matrix_stack; // std::stack?      
 
 	//std::vector<point> vertexes;
 
