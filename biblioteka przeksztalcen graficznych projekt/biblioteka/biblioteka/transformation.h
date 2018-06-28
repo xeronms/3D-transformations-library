@@ -8,33 +8,65 @@
 #include <stack>
 
 
-
 class Transformation{
 
-	std::stack<Matrix> matrix_stack; // std::stack?      
+protected:
 
-	//std::vector<point> vertexes;
-
-
+	Matrix *matrix;
 
 public:
 
-	const Matrix& translation( double dx, double dy, double dz ); // dostajemy macierz przeksztalcen, dodajemy ja na stos i pozniej mnozymy przez nastepne przeksztalcenia. 
+	virtual ~Transformation() = 0;
 
-	const Matrix& scaling( double sx, double sy, double sz );
-	 
-	const Matrix& rotation();
+	virtual const Transformation& operator+ ( const Transformation& ) const = 0;
 
-	//std::vector<point> transform( const std::vector<point> & ) const ; // daje koncowy efekt, mozemy tez zrobic funkcje w obj ktora przyjmuje za argument klase Transformation
-	
-	// transformation() function in obj class
+	virtual const Transformation& operator- ( const Transformation& ) const = 0;
 
-	const Matrix& get_transformation_matrix() const ; 
+	virtual const Transformation& operator>> ( Transformation& ) const = 0;
+
 
 };
 
 
 
+class Translation : public Transformation{
+
+public:
+
+	Translation( double dx, double dy, double dz );
+
+	~Translation();
+
+};
+
+
+
+class Scaling : public Transformation{
+
+public:
+
+	Scaling( double sx, double sy, double sz );
+};
+
+
+class Rotation : public Transformation{
+
+};
+
+class Complex_Transformation : public Transformation{
+
+public:
+
+	Complex_Transformation();
+
+	Complex_Transformation( const Transformation& );
+
+	//virtual ~Complex_Transformation();
+	
+	const Transformation& operator=( const Transformation& );
+
+
+};
 
 
 #endif

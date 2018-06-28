@@ -4,20 +4,22 @@
 
 
 
-const Matrix& Transformation::translation( double dx, double dy, double dz ) {
-	 
+Translation::Translation( double dx, double dy, double dz ) {
 
-	matrix_stack.emplace( Matrix( 4, 4) );
+	matrix = new Matrix( 4, 4);
 
-	matrix_stack.top().translation_init( dx, dy, dz );
+	matrix->translation_init( dx, dy, dz );
 
-	return matrix_stack.top();
+}
+
+Translation::~Translation(){
+
+	delete matrix;
 }
 
 
 
-const Matrix& Transformation::get_transformation_matrix() const {
+Complex_Transformation::Complex_Transformation(){
 
-	return matrix_stack.top();
-
+	matrix = new Matrix( 4, 4);
 }

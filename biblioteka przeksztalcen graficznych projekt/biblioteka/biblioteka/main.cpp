@@ -15,13 +15,15 @@ int main(){
 		object.load_points();
 		object.load_triangles();
 
-		Transformation T;
+		Translation T(1,5,3);
 
-		T.translation(15.1, 1.1, 1.1).rysuj();
+		//Transformation T;
 
-		object.transform( T );
+		//T.translation(15.1, 1.1, 1.1).rysuj();
 
-		object.save_file();
+		//object.transform( T );
+
+		//object.save_file();
 
 		
         }
