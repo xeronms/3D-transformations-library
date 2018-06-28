@@ -17,11 +17,9 @@ int main(){
 
 		Translation T(0,30,3);
 
-		Complex_Transformation CT = T;
-
-		Scaling S( 1, 4, 1);
-
-		CT = S;
+		Scaling S( 0.8, 0.8, 0.8);
+		//CT = (S+T);
+		Complex_Transformation CT = S+T;
 
 		CT >> object;
 
