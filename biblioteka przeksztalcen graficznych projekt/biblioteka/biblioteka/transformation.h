@@ -2,7 +2,7 @@
 #define TRANS_H
 
 #include "matrix.h"
-//#include "obj.h"
+#include "obj.h"
 
 #include <vector>
 #include <stack>
@@ -16,14 +16,19 @@ protected:
 
 public:
 
-	virtual ~Transformation() = 0;
+	Transformation(){ matrix = new Matrix (4,4);}
 
-	virtual const Transformation& operator+ ( const Transformation& ) const = 0;
+	~Transformation();
 
-	virtual const Transformation& operator- ( const Transformation& ) const = 0;
+	Matrix get_matrix() const ;
 
-	virtual const Transformation& operator>> ( Transformation& ) const = 0;
+	const Transformation operator+ ( const Transformation& );
 
+	const Transformation operator- ( const Transformation& );
+
+	const Transformation& operator>> ( Obj& obj) const ;
+
+	
 
 };
 
@@ -34,8 +39,6 @@ class Translation : public Transformation{
 public:
 
 	Translation( double dx, double dy, double dz );
-
-	~Translation();
 
 };
 

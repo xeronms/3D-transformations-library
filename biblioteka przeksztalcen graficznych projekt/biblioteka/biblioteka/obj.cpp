@@ -146,12 +146,12 @@ point& Obj::get_v (int i , int j, int n) {
 }
 
 
-/*
-void Obj::transform ( const Transformation & T){
+
+void Obj::transform ( const Matrix & M ){
 
 	for ( std::vector<point>::iterator it = vertex.begin(); it != vertex.end(); ++it ){
 
-		Matrix tmp = T.get_transformation_matrix() * Matrix ( *it );
+		Matrix tmp = M * Matrix ( *it );
 		//tmp.rysuj();
 		(*it).a = tmp ( 0, 0);
 		(*it).b = tmp ( 1, 0);
@@ -159,7 +159,7 @@ void Obj::transform ( const Transformation & T){
 		//std::cout  << "v " << (*it).a << " " << (*it).b << " " << (*it).c << "\n" ;
 	}
 }
-*/
+
 
 
 void Obj::save_file () {

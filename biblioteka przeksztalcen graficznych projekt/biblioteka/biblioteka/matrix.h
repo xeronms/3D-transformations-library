@@ -26,8 +26,8 @@ class zero_err : public error{};
 
 
 
-class Matrix{
 
+class Matrix{
 
 	double *data;
 

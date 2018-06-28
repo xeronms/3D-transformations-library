@@ -2,7 +2,6 @@
 #define _OBJ_H
 
 #include "matrix.h"
-#include "transformation.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -49,7 +48,7 @@ public:
 
 	// transformation:
 
-	void transform ( const Transformation & t ) ;
+	void transform ( const Matrix & M ) ;
 
 	void save_file() ;
 

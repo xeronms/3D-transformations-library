@@ -15,16 +15,13 @@ int main(){
 		object.load_points();
 		object.load_triangles();
 
-		Translation T(1,5,3);
+		Translation T(0,-15,3);
 
-		//Transformation T;
+		Complex_Transformation CT = T;
 
-		//T.translation(15.1, 1.1, 1.1).rysuj();
+		CT >> object;
 
-		//object.transform( T );
-
-		//object.save_file();
-
+		object.save_file();
 		
         }
 		catch (error){ printf("ERRrrrr\n");}
