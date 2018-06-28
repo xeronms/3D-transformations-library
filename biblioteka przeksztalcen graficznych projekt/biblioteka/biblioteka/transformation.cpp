@@ -32,6 +32,13 @@ Translation::Translation( double dx, double dy, double dz ) {
 }
 
 
+Scaling::Scaling( double sx, double sy, double sz ){
+
+	matrix = new Matrix( 4, 4);
+
+	matrix->scaling_init( sx, sy, sz );
+
+}
 
 
 Complex_Transformation::Complex_Transformation( const Transformation& t ){

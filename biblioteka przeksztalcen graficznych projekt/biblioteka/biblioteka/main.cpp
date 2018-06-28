@@ -15,9 +15,13 @@ int main(){
 		object.load_points();
 		object.load_triangles();
 
-		Translation T(0,-15,3);
+		Translation T(0,30,3);
 
 		Complex_Transformation CT = T;
+
+		Scaling S( 1, 4, 1);
+
+		CT = S;
 
 		CT >> object;
 
