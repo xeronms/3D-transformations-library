@@ -11,6 +11,7 @@
 class Complex_Transformation;
 
 
+
 class Transformation{
 
 protected:
@@ -21,11 +22,13 @@ public:
 
 	Transformation(){ matrix = new Matrix (4,4);}
 
+	Transformation( const Transformation& t);
+
 	virtual ~Transformation();
 
 	Matrix get_matrix() const ;
 
-	virtual const Complex_Transformation operator+ ( const Transformation& );
+	virtual Complex_Transformation operator+ ( const Transformation& );
 
 	const Transformation operator- ( const Transformation& );
 
@@ -63,15 +66,9 @@ public:
 // ==========================================================================================================================
 
 
-class Rotation : public Transformation{
-
-};
-
-
-// ==========================================================================================================================
-
-
 class Complex_Transformation : public Transformation{
+
+protected:
 
 	std::vector< Transformation > transformations;
 
@@ -84,13 +81,35 @@ public:
 
 	Complex_Transformation( const Complex_Transformation& );
 
-	virtual const Complex_Transformation operator+ ( const Transformation& );
+	virtual Complex_Transformation operator+ ( const Transformation& );
 
 	const Transformation& operator= ( const Complex_Transformation& );
 
 	void push ( const Transformation& );
 
+	void prnt(){
+	
+		for (int i =0;i<transformations.size();++i){
+		
+			transformations[i].get_matrix().rysuj();
+		}
+	}
+
 };
+
+
+// ==========================================================================================================================
+
+
+class Rotation : public Complex_Transformation{
+
+public:
+
+	Rotation( axis os, double angle, double dx = 0, double dy = 0, double dz = 0);
+
+	~Rotation(){ delete matrix;}
+};
+
 
 
 #endif

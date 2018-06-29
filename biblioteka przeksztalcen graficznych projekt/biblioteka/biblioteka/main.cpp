@@ -18,8 +18,16 @@ int main(){
 		Translation T(0,30,3);
 
 		Scaling S( 0.8, 0.8, 0.8);
-		//CT = (S+T);
-		Complex_Transformation CT = S+T;
+
+		Translation T2(0,-20,-1);
+		
+		Complex_Transformation CT ( S + T );
+		//CT.prnt();
+
+		CT = CT + T2;
+
+
+		CT.get_matrix().rysuj();
 
 		CT >> object;
 

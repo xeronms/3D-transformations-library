@@ -67,12 +67,16 @@ public:
 
 	void init(double);
 
+
+
 	// for 3D operations data initialization:
 	void translation_init(  double dx, double dy, double dz );
 
 	void scaling_init( double sx, double sy, double sz );
 
-	void rotation_init();
+	void rotation_init( axis os, double angle);
+
+
 
 	void rysuj() const;
 

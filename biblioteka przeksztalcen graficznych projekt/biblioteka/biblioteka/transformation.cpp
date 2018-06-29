@@ -1,7 +1,14 @@
 #include "transformation.h"
 
 
+
+
 // TRANSFORMATION ==========================================================================
+
+
+Transformation::Transformation( const Transformation& t){
+		matrix = new Matrix( t.get_matrix() );
+}
 
 
 Transformation::~Transformation(){
@@ -16,7 +23,7 @@ Matrix Transformation::get_matrix() const {
 }
 
 
-const Complex_Transformation Transformation::operator+ ( const Transformation& t ){
+Complex_Transformation Transformation::operator+ ( const Transformation& t ){
 
 	// dodawanie dwoch transformacji tworzy complex_trans. ale gdy dodajemy complex_trans do czegos innego to korzystamy z wirtualnej wersji w klasie complex_trans
 
@@ -34,6 +41,8 @@ const Transformation& Transformation::operator>> ( Obj& obj) const {
 }
 
 
+
+
 // TRANSLATION ====================================================================================
 
 
@@ -44,6 +53,8 @@ Translation::Translation( double dx, double dy, double dz ) {
 	matrix->translation_init( dx, dy, dz );
 
 }
+
+
 
 
 // SCALING =========================================================================================
@@ -58,7 +69,26 @@ Scaling::Scaling( double sx, double sy, double sz ){
 }
 
 
-// COMPLEX TRANSFORMATION ==========================================================================
+
+
+// ROTATION =======================================================================================
+
+
+Rotation::Rotation( axis os, double angle, double dx, double dy, double dz ){
+
+	matrix = new Matrix( 4, 4);
+
+	if ( dx || dy || dz ) // jesli os obrotu inna niz 0 0 0
+	{}
+
+
+	matrix->rotation_init( os, angle );
+}
+
+
+
+
+// COMP TRANSL ===================================================================================
 
 
 Complex_Transformation::Complex_Transformation( const Matrix& M , const Transformation& t,  const Transformation& t2 ){
@@ -71,6 +101,7 @@ Complex_Transformation::Complex_Transformation( const Matrix& M , const Transfor
 }
 
 
+
 Complex_Transformation::Complex_Transformation( const Complex_Transformation& t ){
 
 	matrix = new Matrix( t.get_matrix() );
@@ -79,11 +110,11 @@ Complex_Transformation::Complex_Transformation( const Complex_Transformation& t 
 }
 
 
-const Complex_Transformation Complex_Transformation::operator+ ( const Transformation& t ){ 
+Complex_Transformation Complex_Transformation::operator+ ( const Transformation& t ){ 
 
 	// CT[T1,T2] + T3 = CT[T1,T2,T3]
-	
-	transformations.push_back( t );
+
+	transformations.emplace_back( Transformation ( t ) );
 
 	*matrix = (*matrix) * t.get_matrix();
 
@@ -105,6 +136,6 @@ const Transformation& Complex_Transformation::operator= ( const Complex_Transfor
 
 void Complex_Transformation::push ( const Transformation& t ){
 
-	transformations.push_back( t );
+	transformations.emplace_back( Transformation (t) );
 
 }

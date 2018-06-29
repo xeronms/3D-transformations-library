@@ -113,6 +113,52 @@ void Matrix::scaling_init( double sx, double sy, double sz ){
 
 
 
+void Matrix::rotation_init( axis os, double a){
+
+	if (r!=4 || c!=4) throw size_err();
+
+	init(0);
+
+	switch ( os )
+	{
+	case x:
+
+		data[0] = 1;
+		data[5] = cos(a);
+		data[6] = -sin(a);
+		data[9] = sin(a);
+		data[10] = cos(a);
+		data[15] = 1;
+
+		break;
+
+	case y:
+
+		data[0] = cos(a);
+		data[2] = -sin(a);
+		data[5] = 1;
+		data[8] = sin(a);
+		data[10] = cos(a);
+		data[15] = 1;
+
+	case z:
+
+		data[0] = cos(a);
+		data[1] = -sin(a);
+		data[4] = sin(a);
+		data[5] = cos(a);
+		data[10] = 1;
+		data[15] = 1;
+
+	default:
+		break;
+	}
+
+}
+
+
+
+
 
 void Matrix::rysuj() const{
 	for (uint i=0; i<(r*c); ++i){

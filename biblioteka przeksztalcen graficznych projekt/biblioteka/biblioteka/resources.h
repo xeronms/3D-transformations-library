@@ -8,7 +8,7 @@ class Transformation;
 
 class Obj;
 
-
+enum axis { x , y , z };
 
 struct point{ //vertex is a point
 
