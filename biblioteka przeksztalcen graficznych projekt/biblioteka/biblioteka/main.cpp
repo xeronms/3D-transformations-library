@@ -23,12 +23,15 @@ int main(){
 		
 		Scaling S2(10,10,10);
 
-		Complex_Transformation CT ( S + T );
+		//Complex_Transformation CT ( S + T );
 
-		//CT = CT + S2;
+		//CT = CT + S2 - S -T;
 
+		Complex_Transformation CT;
 
-		CT >> object;
+		CT = T + S - T; // - odejmuje macierze a nie oblicza wyznacznik
+
+		//CT >> object;
 		
 
 		CT.get_matrix().rysuj();

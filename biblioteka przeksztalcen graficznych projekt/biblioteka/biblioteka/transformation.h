@@ -30,6 +30,10 @@ public:
 
 	virtual Complex_Transformation operator+ ( const Transformation& );
 
+	virtual Transformation operator- ();
+
+	virtual Complex_Transformation operator- ( Transformation& t );
+
 	//const Transformation operator- ( const Transformation& );
 
 	virtual const Transformation& operator>> ( Obj& obj) const ;
@@ -73,7 +77,9 @@ protected:
 public:
 	Complex_Transformation();
 
-	Complex_Transformation( const Transformation& t,  const Transformation& t2 );
+	Complex_Transformation( const Transformation& t );
+
+	Complex_Transformation( const Transformation& t , const Transformation& t2);
 
 	Complex_Transformation( const Complex_Transformation& );
 
