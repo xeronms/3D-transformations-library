@@ -26,13 +26,13 @@ public:
 
 	virtual ~Transformation(){}
 
-	Matrix get_matrix() const ;
+	virtual Matrix get_matrix() const ;
 
 	virtual Complex_Transformation operator+ ( const Transformation& );
 
 	//const Transformation operator- ( const Transformation& );
 
-	const Transformation& operator>> ( Obj& obj) const ;
+	virtual const Transformation& operator>> ( Obj& obj) const ;
 
 };
 
@@ -68,7 +68,7 @@ class Complex_Transformation : public Transformation{
 
 protected:
 
-	std::vector < const Transformation* > transformations;
+	std::vector < const Transformation > transformations;
 
 public:
 	Complex_Transformation();
@@ -84,6 +84,10 @@ public:
 	const Transformation& operator[] ( int i ) const;
 
 	Transformation& operator[] ( int i );
+
+	virtual const Transformation& operator>> ( Obj& obj) ;
+	
+	virtual Matrix get_matrix() const ;
 
 	//void push ( const Transformation& );
 

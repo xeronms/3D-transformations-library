@@ -25,16 +25,15 @@ int main(){
 
 		Complex_Transformation CT ( S + T );
 
-		/*CT = CT + S2;
+		//CT = CT + S2;
 
-		
 
 		CT >> object;
-		*/
+		
 
 		CT.get_matrix().rysuj();
 
-		T >> object;
+		//T >> object;
 
 		object.save_file();
 		
