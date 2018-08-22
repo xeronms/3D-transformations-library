@@ -36,6 +36,9 @@ class Matrix{
 
 public:
 
+	Matrix(){
+		data = nullptr;
+	}
 
 	Matrix(unsigned int r_,unsigned int c_):r(r_),c(c_){
 		data = new double [r_*c_];
@@ -52,7 +55,8 @@ public:
 
 
 	~Matrix(){
-		delete [] data;
+		if (data != nullptr)
+			delete [] data;
 }
 
 
