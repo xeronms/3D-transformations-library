@@ -17,7 +17,7 @@ int main(){
 
 		Translation T(0,29,-28);
 
-		Scaling S( 0.8, 0.8, 0.8);
+		Scaling S( 5.8, 0.8, 0.8);
 
 		Translation T2(0,-0.20,-1);
 		
@@ -29,14 +29,14 @@ int main(){
 
 		Complex_Transformation CT;
 
-		CT = T + S - T; // - odejmuje macierze a nie oblicza wyznacznik
+		CT = T + S; // - odejmuje macierze a nie oblicza wyznacznik
 
 		//CT >> object;
 		
 
 		CT.get_matrix().rysuj();
 
-		//T >> object;
+		CT >> object;
 
 		object.save_file();
 		
