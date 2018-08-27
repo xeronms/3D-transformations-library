@@ -169,7 +169,7 @@ void Obj::save_file () {
 
     std::string strTemp;
 	std::cout.unsetf ( std::ios::floatfield );   
-	std::cout.precision(15); // nie usuwa miejsc po przecinku
+	std::cout.precision(20); // nie usuwa miejsc po przecinku
     
 
 	for ( std::vector<point>::iterator it = vertex.begin(); it != vertex.end(); ++it ){

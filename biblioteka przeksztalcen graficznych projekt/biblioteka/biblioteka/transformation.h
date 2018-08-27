@@ -41,31 +41,51 @@ public:
 };
 
 
+
 // ==========================================================================================================================
+
 
 
 class Translation : public Transformation{
 
 public:
 
-	Translation( double dx, double dy, double dz );
+	Translation( double dx = 0, double dy = 0, double dz = 0 );
 
 };
 
 
+
 // ==========================================================================================================================
+
 
 
 class Scaling : public Transformation{
 
 public:
 
-	Scaling( double sx, double sy, double sz );
+	Scaling( double sx = 1, double sy = 1, double sz = 1 );
 
 };
 
 
+
 // ==========================================================================================================================
+
+
+
+class Rotation : public Transformation{
+
+public:
+
+	Rotation( axis os, double angle );
+
+};
+
+
+
+// ==========================================================================================================================
+
 
 
 class Complex_Transformation : public Transformation{
@@ -101,14 +121,16 @@ public:
 };
 
 
+
 // ==========================================================================================================================
 
 
-class Rotation : public Complex_Transformation{
+
+class RotationArb : public Complex_Transformation{
 
 public:
 
-	Rotation( axis os, double angle, double dx = 0, double dy = 0, double dz = 0);
+	//Rotation( axis os, double angle, double dx = 0, double dy = 0, double dz = 0);
 };
 
 

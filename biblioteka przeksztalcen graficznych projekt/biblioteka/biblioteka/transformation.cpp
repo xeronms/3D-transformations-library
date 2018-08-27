@@ -87,15 +87,10 @@ Scaling::Scaling( double sx, double sy, double sz ){
 // ROTATION =======================================================================================
 
 
-Rotation::Rotation( axis os, double angle, double dx, double dy, double dz ){
+Rotation::Rotation( axis os, double angle ){
 
-	matrix =
- Matrix( 4, 4);
-
-	if ( dx || dy || dz ) // jesli os obrotu inna niz 0 0 0
-	{}
-
-
+	matrix = Matrix( 4, 4);
+	
 	matrix.rotation_init( os, angle );
 }
 

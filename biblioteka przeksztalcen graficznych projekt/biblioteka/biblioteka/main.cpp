@@ -10,18 +10,22 @@ int main(){
 
 	try{
 
-		Obj object("ground.obj");
+		Obj object("cow.obj");
 
 		object.load_points();
 		object.load_triangles();
 
-		Translation T(0,29,-28);
+		Translation T(0,5,0);
 
-		Scaling S( 5.8, 0.8, 0.8);
+		Scaling S( 0.8, 0.8, 0.8);
 
 		Translation T2(0,-0.20,-1);
 		
 		Scaling S2(10,10,10);
+
+		Scaling S3 (0.5);
+
+		Rotation R(z,-180); // sin 360 != 0
 
 		//Complex_Transformation CT ( S + T );
 
@@ -29,16 +33,14 @@ int main(){
 
 		Complex_Transformation CT;
 
-		CT = T + S; // - odejmuje macierze a nie oblicza wyznacznik
+		//CT = R + T + S3 ; // - odejmuje macierze a nie oblicza wyznacznik
+				
 
-		//CT >> object;
-		
+		R.get_matrix().rysuj();
 
-		CT.get_matrix().rysuj();
+		//R >> object;
 
-		CT >> object;
-
-		object.save_file();
+		//object.save_file();
 		
         }
 		catch (error){ printf("ERRrrrr\n");}

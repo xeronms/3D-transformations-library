@@ -58,23 +58,6 @@ const Transformation& Complex_Transformation::operator= ( const Complex_Transfor
 }
 
 
-/*
-void  Complex_Transformation::operator>> ( Obj& obj) const {
-
-	*matrix = (*transformations)[0].get_matrix();
-
-	for ( int i = 1 ; i < transformations->size(); i++ ){
-	
-		*matrix = *matrix * (*transformations)[i].get_matrix();
-	}
-
-	obj.transform( *matrix );
-
-}
-*/
-
-
-
 
 const Transformation& Complex_Transformation::operator[] ( int i ) const {
 
