@@ -91,7 +91,7 @@ Rotation::Rotation( axis os, double angle ){
 
 	matrix = Matrix( 4, 4);
 	
-	matrix.rotation_init( os, angle );
+	matrix.rotation_init( os,  (angle*3.14159265)/180 );
 }
 
 

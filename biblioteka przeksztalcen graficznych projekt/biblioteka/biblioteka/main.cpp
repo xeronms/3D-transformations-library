@@ -38,9 +38,9 @@ int main(){
 
 		R.get_matrix().rysuj();
 
-		//R >> object;
+		R >> object;
 
-		//object.save_file();
+		object.save_file();
 		
         }
 		catch (error){ printf("ERRrrrr\n");}
