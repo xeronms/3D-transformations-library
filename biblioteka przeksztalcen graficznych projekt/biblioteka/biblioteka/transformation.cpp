@@ -7,7 +7,11 @@
 
 
 Transformation::Transformation( const Transformation& t){
-		matrix = Matrix( t.get_matrix() );
+
+		matrix = Matrix( t.matrix );
+
+		inverse = Matrix( t.inverse );
+
 }
 
 
@@ -30,9 +34,14 @@ Complex_Transformation Transformation::operator+ ( const Transformation& t ){
 
 Transformation Transformation::operator- (){
 
-	matrix = - matrix;
+	Transformation tmp;
 
-	return *this;
+	tmp.matrix = this->inverse;
+
+	tmp.inverse = this->matrix;
+
+
+	return tmp;
 }
 
 
@@ -64,6 +73,10 @@ Translation::Translation( double dx, double dy, double dz ) {
 	matrix =  Matrix( 4, 4);
 
 	matrix.translation_init( dx, dy, dz );
+	
+	inverse =  Matrix( 4, 4);
+
+	inverse.translation_init( -dx, -dy, -dz );
 
 }
 
@@ -75,9 +88,15 @@ Translation::Translation( double dx, double dy, double dz ) {
 
 Scaling::Scaling( double sx, double sy, double sz ){
 
+	// if ( sx , sy, sz == 0) thorw ...
+
 	matrix = Matrix( 4, 4);
 
 	matrix.scaling_init( sx, sy, sz );
+
+	inverse =  Matrix( 4, 4);
+
+	inverse.scaling_init( 1/sx, 1/sy, 1/sz );
 
 }
 
@@ -92,6 +111,11 @@ Rotation::Rotation( axis os, double angle ){
 	matrix = Matrix( 4, 4);
 	
 	matrix.rotation_init( os,  (angle*3.14159265)/180 );
+
+	inverse =  Matrix( 4, 4);
+
+	inverse.rotation_init( os,  -(angle*3.14159265)/180 );
+
 }
 
 

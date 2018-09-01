@@ -18,6 +18,8 @@ protected:
 
 	Matrix matrix;
 
+	Matrix inverse;
+
 public:
 
 	Transformation(){ matrix = Matrix (4,4);}
@@ -30,9 +32,9 @@ public:
 
 	virtual Complex_Transformation operator+ ( const Transformation& );
 
-	virtual Transformation operator- ();
+	Transformation operator- ();
 
-	virtual Complex_Transformation operator- ( Transformation& t );
+	Complex_Transformation operator- ( Transformation& t );
 
 	//const Transformation operator- ( const Transformation& );
 

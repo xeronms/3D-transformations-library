@@ -142,7 +142,7 @@ void Matrix::rotation_init( axis os, double a){
 		data[15] = 1;
 
 	case z:
-		printf("%lf %lf %lf",cos(a),sin(a),-sin(a));
+
 		data[0] = cos(a);
 		data[1] = sin(a);
 		data[4] = -sin(a);

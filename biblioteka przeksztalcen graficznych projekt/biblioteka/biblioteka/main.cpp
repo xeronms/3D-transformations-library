@@ -33,12 +33,12 @@ int main(){
 
 		Complex_Transformation CT;
 
-		//CT = R + T + S3 ; // - odejmuje macierze a nie oblicza wyznacznik
+		CT = R + T + S3 - T ; // - odejmuje macierze a nie oblicza wyznacznik
 				
 
-		R.get_matrix().rysuj();
+		CT.get_matrix().rysuj();
 
-		R >> object;
+		CT >> object;
 
 		object.save_file();
 		
