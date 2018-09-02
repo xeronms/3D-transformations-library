@@ -9,7 +9,7 @@ Complex_Transformation::Complex_Transformation(){}
 
 
 
-Complex_Transformation::Complex_Transformation( const Transformation& t,  const Transformation& t2 ){
+Complex_Transformation::Complex_Transformation(  Transformation& t,   Transformation& t2 ){
 
 	// funkcja uzywana dla operator+
 	
@@ -20,7 +20,7 @@ Complex_Transformation::Complex_Transformation( const Transformation& t,  const 
 
 
 
-Complex_Transformation::Complex_Transformation( const Transformation& t ){
+Complex_Transformation::Complex_Transformation( Transformation& t ){
 
 	// CT = T
 
@@ -39,7 +39,7 @@ Complex_Transformation::Complex_Transformation( const Complex_Transformation& t 
 
 
 
-Complex_Transformation Complex_Transformation::operator+ ( const Transformation& t ) const { 
+Complex_Transformation Complex_Transformation::operator+ ( Transformation& t ) const { 
 
 	// CT[T1,T2] + T3 = CT[T1,T2,T3]
 
@@ -53,7 +53,17 @@ Complex_Transformation Complex_Transformation::operator+ ( const Transformation&
 
 
 
-void Complex_Transformation::operator+= ( const Transformation& t ){ 
+Transformation& Complex_Transformation::operator- (){ //////////////////////////////////////////////////////////////////////////////
+
+
+	return *this;
+
+}
+
+
+
+
+void Complex_Transformation::operator+= (  Transformation& t ){ 
 
 	// 
 
@@ -89,10 +99,10 @@ const Transformation& Complex_Transformation::operator[] ( int i ) const {
 	return *(transformations)[i];
 
 }
-*/
 
 
-const Transformation* Complex_Transformation::operator[] ( int i ) const {
+
+const Transformation* Complex_Transformation::operator[] ( int i ) const { //////////////////////////???????????????????????????????
 
 	 std::vector<const Transformation*>::const_iterator it = transformations.begin();
 
@@ -101,8 +111,7 @@ const Transformation* Complex_Transformation::operator[] ( int i ) const {
 	return *it;
 
 }
-
-
+*/
 
 
 
@@ -141,8 +150,7 @@ Matrix Complex_Transformation::get_inv_matrix() const {
 
 	for ( size_t i = 0; i < transformations.size(); ++i ){
 	
-		m = m * (*transformations[i]).get_matrix();
-		m.rysuj();
+		m = m * (*transformations[i]).get_inv_matrix();
 	}
 
 	return m;

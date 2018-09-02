@@ -30,9 +30,11 @@ public:
 
 	virtual Matrix get_inv_matrix() const ;
 
-	virtual Complex_Transformation operator+ ( const Transformation& ) const ;
+	virtual Complex_Transformation operator+ ( Transformation& ) ;
 
 	Complex_Transformation operator- ( Transformation& t );
+
+	virtual Transformation& operator- ();
 
 	const Transformation& operator>> ( Obj& obj) const ;
 
@@ -52,7 +54,6 @@ public:
 
 	Translation( const Translation& t);
 
-	virtual const Translation operator- ();
 
 };
 
@@ -70,7 +71,6 @@ public:
 
 	Scaling( const Scaling& t);
 
-	virtual const Scaling operator- ();
 
 };
 
@@ -88,7 +88,6 @@ public:
 	
 	Rotation( const Rotation& t);
 	
-	virtual const Rotation operator- ();
 
 };
 
@@ -102,26 +101,28 @@ class Complex_Transformation : public Transformation{
 
 protected:
 
-	std::vector < const Transformation* > transformations;
+	std::vector < Transformation* > transformations;
 
 public:
 	Complex_Transformation();
 
-	Complex_Transformation( const Transformation& t );
+	Complex_Transformation( Transformation& t );
 
-	Complex_Transformation( const Transformation& t , const Transformation& t2);
+	Complex_Transformation( Transformation& t , Transformation& t2);
 
 	Complex_Transformation( const Complex_Transformation& );
 
 
 
-	virtual Complex_Transformation operator+ ( const Transformation& ) const ;
+	virtual Complex_Transformation operator+ ( Transformation& ) const ;
+
+	virtual Transformation& operator- ();
 	
 	//virtual Complex_Transformation operator- ( Transformation& t );
 
 	//virtual const Complex_Transformation operator- ();
 
-	void operator+= ( const Transformation& );
+	void operator+= (  Transformation& );
 
 	//Complex_Transformation operator+ ( const Complex_Transformation& );
 

@@ -23,7 +23,7 @@ Matrix Transformation::get_inv_matrix() const {
 
 
 
-Complex_Transformation Transformation::operator+ ( const Transformation& t ) const {
+Complex_Transformation Transformation::operator+ (  Transformation& t ) {
 
 	// dodawanie dwoch transformacji tworzy complex_trans. ale gdy dodajemy complex_trans do czegos innego to korzystamy z wirtualnej wersji w klasie complex_trans
 	
@@ -32,28 +32,28 @@ Complex_Transformation Transformation::operator+ ( const Transformation& t ) con
 
 
 
-/*
-
-Transformation Transformation::operator- (){
-
-	Transformation tmp;
-
-	tmp.matrix = this->inverse;
-
-	tmp.inverse = this->matrix;
-
-
-	return tmp;
-}
-
-
 
 
 Complex_Transformation Transformation::operator- ( Transformation& t ){
 
 	return *this + (-t);
 }
-*/
+
+
+
+
+Transformation& Transformation::operator- (){
+
+	Matrix tmp = *matrix;
+
+	*matrix = *inverse;
+
+	*inverse = tmp;
+
+
+	return *this;
+}
+
 
 
 
@@ -95,19 +95,6 @@ Translation::Translation( const Translation& t){
 
 
 
-const Translation Translation::operator- (){
-
-	Translation tmp;
-
-	*tmp.matrix = *this->inverse;
-
-	*tmp.inverse = *this->matrix;
-
-
-	return tmp;
-}
-
-
 
 // SCALING =========================================================================================
 
@@ -139,19 +126,6 @@ Scaling::Scaling( const Scaling& t){
 
 
 
-const Scaling Scaling::operator- (){
-
-	Scaling tmp;
-
-	*tmp.matrix = *this->inverse;
-
-	*tmp.inverse = *this->matrix;
-
-
-	return tmp;
-}
-
-
 
 // ROTATION =======================================================================================
 
@@ -179,16 +153,3 @@ Rotation::Rotation( const Rotation& t){
 
 }
 
-
-
-const Rotation Rotation::operator- (){
-
-	Rotation tmp;
-
-	*tmp.matrix = *this->inverse;
-
-	*tmp.inverse = *this->matrix;
-
-
-	return tmp;
-}
