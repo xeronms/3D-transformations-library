@@ -17,36 +17,45 @@ int main(){
 
 		Translation T(0,5,0);
 
-		Scaling S( 0.8, 0.8, 0.8);
-
 		Translation T2(0,-0.20,-1);
+
+		Translation T3(10,0,-5);
+
+		Scaling S( 0.8, 0.8, 0.8);
 		
 		Scaling S2(10,10,10);
 
 		Scaling S3 (0.5);
 
-		Rotation R(z,-180); // sin 360 != 0
+		Rotation R(z,-180);
 
 		Rotation R2(y,90);
 
-		//Complex_Transformation CT ( S + T );
-
-		//CT = CT + S2 - S -T;
 
 		Complex_Transformation CT2 = T2 + S2 + T;
 
-		Complex_Transformation CT = R + T + S3 ; // - odejmuje macierze a nie oblicza wyznacznik
+		Complex_Transformation CT = R + R2 + CT2 + S3 + T3 + S;
 				
-		CT2 += CT ; // ???????????????
-
-		//CT = CT2;
-
-		//CT = CT + CT2;
 
 
-		(S).get_matrix().rysuj();
+		Translation a1 ( 100 );
+		Translation a2 ( 0, 0, -50);
+		Scaling b1 ( 0.5 );
+		Scaling b2 ( 10, 10, 10);
+		Rotation c1( z, 90);
+		Rotation c2( x, 120);
 
-		(S) >> object;
+		Complex_Transformation B = ( a2 + b2);
+
+		Complex_Transformation A = a1 + b1  + B + c1;
+
+		CT += A;
+
+		CT += c2;
+
+		//CT2.get_matrix().rysuj();
+
+		CT >> object;
 
 		object.save_file();
 		

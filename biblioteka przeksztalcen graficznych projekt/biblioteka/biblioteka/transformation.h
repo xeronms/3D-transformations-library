@@ -30,7 +30,7 @@ public:
 
 	virtual Matrix get_inv_matrix() const ;
 
-	virtual Complex_Transformation operator+ ( const Transformation& );
+	virtual Complex_Transformation operator+ ( const Transformation& ) const ;
 
 	Complex_Transformation operator- ( Transformation& t );
 
@@ -107,15 +107,15 @@ protected:
 public:
 	Complex_Transformation();
 
-	//~Complex_Transformation();
-
 	Complex_Transformation( const Transformation& t );
 
 	Complex_Transformation( const Transformation& t , const Transformation& t2);
 
 	Complex_Transformation( const Complex_Transformation& );
 
-	virtual Complex_Transformation operator+ ( const Transformation& );
+
+
+	virtual Complex_Transformation operator+ ( const Transformation& ) const ;
 	
 	//virtual Complex_Transformation operator- ( Transformation& t );
 

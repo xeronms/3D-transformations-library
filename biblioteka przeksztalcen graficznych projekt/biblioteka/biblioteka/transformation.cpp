@@ -23,7 +23,7 @@ Matrix Transformation::get_inv_matrix() const {
 
 
 
-Complex_Transformation Transformation::operator+ ( const Transformation& t ){
+Complex_Transformation Transformation::operator+ ( const Transformation& t ) const {
 
 	// dodawanie dwoch transformacji tworzy complex_trans. ale gdy dodajemy complex_trans do czegos innego to korzystamy z wirtualnej wersji w klasie complex_trans
 	
@@ -59,7 +59,7 @@ Complex_Transformation Transformation::operator- ( Transformation& t ){
 
 const Transformation& Transformation::operator>> ( Obj& obj) const {
 
-	obj.transform( *matrix );
+	obj.transform( get_matrix() );
 
 	return *this;
 }

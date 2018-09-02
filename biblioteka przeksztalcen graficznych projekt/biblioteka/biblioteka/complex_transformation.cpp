@@ -39,7 +39,7 @@ Complex_Transformation::Complex_Transformation( const Complex_Transformation& t 
 
 
 
-Complex_Transformation Complex_Transformation::operator+ ( const Transformation& t ){ 
+Complex_Transformation Complex_Transformation::operator+ ( const Transformation& t ) const { 
 
 	// CT[T1,T2] + T3 = CT[T1,T2,T3]
 
@@ -118,7 +118,7 @@ Matrix Complex_Transformation::get_matrix() const {
 	for ( size_t i = 0; i < transformations.size(); ++i ){
 	
 		m = m * (*transformations[i]).get_matrix();
-	
+		m.rysuj();
 	}
 
 	return m;
