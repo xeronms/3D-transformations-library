@@ -83,21 +83,28 @@ const Transformation& Complex_Transformation::operator= ( const Complex_Transfor
 }
 
 
-
+/*
 const Transformation& Complex_Transformation::operator[] ( int i ) const {
 
 	return *(transformations)[i];
 
 }
+*/
 
 
-/*
-Transformation* Complex_Transformation::operator[] ( int i ) {
+const Transformation* Complex_Transformation::operator[] ( int i ) const {
 
-	return *(transformations)[i];
+	 std::vector<const Transformation*>::const_iterator it = transformations.begin();
+
+	for ( int j = 0; j<i; ++j, ++it){}
+
+	return *it;
 
 }
-*/
+
+
+
+
 
 /*
 const Transformation& Complex_Transformation::operator>> ( Obj& obj) {
@@ -124,6 +131,22 @@ Matrix Complex_Transformation::get_matrix() const {
 	return m;
 }
 
+
+
+Matrix Complex_Transformation::get_inv_matrix() const {
+
+	Matrix m(4,4);
+
+	m.translation_init(0,0,0);
+
+	for ( size_t i = 0; i < transformations.size(); ++i ){
+	
+		m = m * (*transformations[i]).get_matrix();
+		m.rysuj();
+	}
+
+	return m;
+}
 
 
 /*

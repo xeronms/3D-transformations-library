@@ -53,11 +53,13 @@ int main(){
 
 		CT += c2;
 
-		//CT2.get_matrix().rysuj();
+		Complex_Transformation C = T2+  CT + T;
 
-		CT >> object;
+		//C[1]->get_matrix().rysuj();
 
-		object.save_file();
+		C >> object;
+
+		//object.save_file();
 		
         }
 		catch (error){ printf("ERRrrrr\n");}

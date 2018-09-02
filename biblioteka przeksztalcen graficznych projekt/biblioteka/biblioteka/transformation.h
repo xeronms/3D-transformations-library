@@ -127,17 +127,14 @@ public:
 
 	const Transformation& operator= ( const Complex_Transformation& );
 
-	const Transformation& operator[] ( int i ) const;
+	const Transformation* operator[] ( int i ) const;
 
 	Transformation* operator[] ( int i );
-
-	//virtual const Transformation& operator>> ( Obj& obj) ;
 	
 	virtual Matrix get_matrix() const ;
 
-	//void push ( const Transformation& );
+	virtual Matrix get_inv_matrix() const ;
 
-	//void operator>> ( Obj& obj) const ;
 };
 
 
