@@ -27,18 +27,26 @@ int main(){
 
 		Rotation R(z,-180); // sin 360 != 0
 
+		Rotation R2(y,90);
+
 		//Complex_Transformation CT ( S + T );
 
 		//CT = CT + S2 - S -T;
 
-		Complex_Transformation CT;
+		Complex_Transformation CT2 = T2 + S2 + T;
 
-		CT = R + T + S3 - T ; // - odejmuje macierze a nie oblicza wyznacznik
+		Complex_Transformation CT = R + T + S3 ; // - odejmuje macierze a nie oblicza wyznacznik
 				
+		CT2 += CT ; // ???????????????
 
-		CT.get_matrix().rysuj();
+		//CT = CT2;
 
-		CT >> object;
+		//CT = CT + CT2;
+
+
+		(S).get_matrix().rysuj();
+
+		(S) >> object;
 
 		object.save_file();
 		

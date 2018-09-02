@@ -5,20 +5,20 @@
 
 // TRANSFORMATION ==========================================================================
 
-
-Transformation::Transformation( const Transformation& t){
-
-		matrix = Matrix( t.matrix );
-
-		inverse = Matrix( t.inverse );
-
-}
+Transformation::~Transformation(){}
 
 
 
 Matrix Transformation::get_matrix() const {
 
-	return matrix;
+	return *matrix;
+}
+
+
+
+Matrix Transformation::get_inv_matrix() const {
+
+	return *inverse;
 }
 
 
@@ -31,6 +31,8 @@ Complex_Transformation Transformation::operator+ ( const Transformation& t ){
 }
 
 
+
+/*
 
 Transformation Transformation::operator- (){
 
@@ -51,13 +53,13 @@ Complex_Transformation Transformation::operator- ( Transformation& t ){
 
 	return *this + (-t);
 }
-
+*/
 
 
 
 const Transformation& Transformation::operator>> ( Obj& obj) const {
 
-	obj.transform( matrix );
+	obj.transform( *matrix );
 
 	return *this;
 }
@@ -68,55 +70,125 @@ const Transformation& Transformation::operator>> ( Obj& obj) const {
 // TRANSLATION ====================================================================================
 
 
+
 Translation::Translation( double dx, double dy, double dz ) {
 
-	matrix =  Matrix( 4, 4);
+	matrix =  new Matrix( 4, 4);
 
-	matrix.translation_init( dx, dy, dz );
+	matrix->translation_init( dx, dy, dz );
 	
-	inverse =  Matrix( 4, 4);
+	inverse =  new Matrix( 4, 4);
 
-	inverse.translation_init( -dx, -dy, -dz );
+	inverse->translation_init( -dx, -dy, -dz );
 
 }
 
+
+
+Translation::Translation( const Translation& t){
+
+	matrix = new Matrix( t.get_matrix() );
+
+	inverse = new Matrix( t.get_inv_matrix() );
+
+}
+
+
+
+const Translation Translation::operator- (){
+
+	Translation tmp;
+
+	*tmp.matrix = *this->inverse;
+
+	*tmp.inverse = *this->matrix;
+
+
+	return tmp;
+}
 
 
 
 // SCALING =========================================================================================
 
 
+
 Scaling::Scaling( double sx, double sy, double sz ){
 
 	// if ( sx , sy, sz == 0) thorw ...
 
-	matrix = Matrix( 4, 4);
+	matrix = new Matrix( 4, 4);
 
-	matrix.scaling_init( sx, sy, sz );
+	matrix->scaling_init( sx, sy, sz );
 
-	inverse =  Matrix( 4, 4);
+	inverse =  new Matrix( 4, 4);
 
-	inverse.scaling_init( 1/sx, 1/sy, 1/sz );
+	inverse->scaling_init( 1/sx, 1/sy, 1/sz );
 
 }
 
+
+
+Scaling::Scaling( const Scaling& t){
+
+	matrix = new Matrix( t.get_matrix() );
+
+	inverse = new Matrix( t.get_inv_matrix() );
+
+}
+
+
+
+const Scaling Scaling::operator- (){
+
+	Scaling tmp;
+
+	*tmp.matrix = *this->inverse;
+
+	*tmp.inverse = *this->matrix;
+
+
+	return tmp;
+}
 
 
 
 // ROTATION =======================================================================================
 
 
+
 Rotation::Rotation( axis os, double angle ){
 
-	matrix = Matrix( 4, 4);
+	matrix = new Matrix( 4, 4);
 	
-	matrix.rotation_init( os,  (angle*3.14159265)/180 );
+	matrix->rotation_init( os,  (angle*3.14159265)/180 );
 
-	inverse =  Matrix( 4, 4);
+	inverse =  new Matrix( 4, 4);
 
-	inverse.rotation_init( os,  -(angle*3.14159265)/180 );
+	inverse->rotation_init( os,  -(angle*3.14159265)/180 );
 
 }
 
 
 
+Rotation::Rotation( const Rotation& t){
+
+	matrix = new Matrix( t.get_matrix() );
+
+	inverse = new Matrix( t.get_inv_matrix() );
+
+}
+
+
+
+const Rotation Rotation::operator- (){
+
+	Rotation tmp;
+
+	*tmp.matrix = *this->inverse;
+
+	*tmp.inverse = *this->matrix;
+
+
+	return tmp;
+}

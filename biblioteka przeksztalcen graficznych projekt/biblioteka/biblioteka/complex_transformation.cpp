@@ -13,9 +13,9 @@ Complex_Transformation::Complex_Transformation( const Transformation& t,  const 
 
 	// funkcja uzywana dla operator+
 	
-	transformations.push_back( t );
+	transformations.push_back( &t );
 
-	transformations.push_back( t2 );
+	transformations.push_back( &t2 );
 }
 
 
@@ -24,7 +24,7 @@ Complex_Transformation::Complex_Transformation( const Transformation& t ){
 
 	// CT = T
 
-	transformations.push_back( t );
+	transformations.push_back( &t );
 
 }
 
@@ -43,11 +43,36 @@ Complex_Transformation Complex_Transformation::operator+ ( const Transformation&
 
 	// CT[T1,T2] + T3 = CT[T1,T2,T3]
 
+	Complex_Transformation ct ( *this );
+
+	ct.transformations.push_back( &t );
+
+	return ct;
+}
+
+
+
+
+void Complex_Transformation::operator+= ( const Transformation& t ){ 
+
+	// 
+
+	transformations.push_back( &t );
+
+
+}
+
+
+/*
+Complex_Transformation Complex_Transformation::operator+ ( const Complex_Transformation& t ){ 
+
+	// CT[T1,T2] + T3 = CT[T1,T2,T3]
+
 	transformations.push_back( t );
 
 	return *this;
 }
-
+*/
 
 
 const Transformation& Complex_Transformation::operator= ( const Complex_Transformation& t ){
@@ -61,18 +86,26 @@ const Transformation& Complex_Transformation::operator= ( const Complex_Transfor
 
 const Transformation& Complex_Transformation::operator[] ( int i ) const {
 
-	return (transformations)[i];
+	return *(transformations)[i];
 
 }
 
 
+/*
+Transformation* Complex_Transformation::operator[] ( int i ) {
 
+	return *(transformations)[i];
+
+}
+*/
+
+/*
 const Transformation& Complex_Transformation::operator>> ( Obj& obj) {
 
 	obj.transform( get_matrix() );
 
 	return *this;
-}
+}*/
 
 
 
@@ -84,7 +117,7 @@ Matrix Complex_Transformation::get_matrix() const {
 
 	for ( size_t i = 0; i < transformations.size(); ++i ){
 	
-		m = m * transformations[i].get_matrix();
+		m = m * (*transformations[i]).get_matrix();
 	
 	}
 
