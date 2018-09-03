@@ -53,11 +53,15 @@ int main(){
 
 		CT += c2;
 
-		Complex_Transformation C = T2+  CT + T;
+		//CT - B; ???
 
-		//C[1]->get_matrix().rysuj();
+		Complex_Transformation C = T2 - B + CT + T ;
 
-		C >> object;
+		C[1] = a2;
+
+		C[1].get_matrix().rysuj();
+
+		//C >> object;
 
 		//object.save_file();
 		

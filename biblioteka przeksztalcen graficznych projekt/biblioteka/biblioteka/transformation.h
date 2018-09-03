@@ -128,9 +128,9 @@ public:
 
 	const Transformation& operator= ( const Complex_Transformation& );
 
-	const Transformation* operator[] ( int i ) const;
+	const Transformation& operator[] ( int i ) const;
 
-	Transformation* operator[] ( int i );
+	Transformation& operator[] ( int i );
 	
 	virtual Matrix get_matrix() const ;
 

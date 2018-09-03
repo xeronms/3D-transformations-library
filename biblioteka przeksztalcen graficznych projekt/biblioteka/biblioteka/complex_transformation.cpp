@@ -55,6 +55,11 @@ Complex_Transformation Complex_Transformation::operator+ ( Transformation& t ) c
 
 Transformation& Complex_Transformation::operator- (){ //////////////////////////////////////////////////////////////////////////////
 
+	for ( size_t i=0; i<transformations.size(); ++i ){
+	
+		- (*transformations[i]) ;
+
+	}
 
 	return *this;
 
@@ -73,16 +78,6 @@ void Complex_Transformation::operator+= (  Transformation& t ){
 }
 
 
-/*
-Complex_Transformation Complex_Transformation::operator+ ( const Complex_Transformation& t ){ 
-
-	// CT[T1,T2] + T3 = CT[T1,T2,T3]
-
-	transformations.push_back( t );
-
-	return *this;
-}
-*/
 
 
 const Transformation& Complex_Transformation::operator= ( const Complex_Transformation& t ){
@@ -93,7 +88,8 @@ const Transformation& Complex_Transformation::operator= ( const Complex_Transfor
 }
 
 
-/*
+
+
 const Transformation& Complex_Transformation::operator[] ( int i ) const {
 
 	return *(transformations)[i];
@@ -102,7 +98,15 @@ const Transformation& Complex_Transformation::operator[] ( int i ) const {
 
 
 
-const Transformation* Complex_Transformation::operator[] ( int i ) const { //////////////////////////???????????????????????????????
+Transformation& Complex_Transformation::operator[] ( int i ){
+
+	return *(transformations)[i];
+
+}
+
+/*
+
+const Transformation* Complex_Transformation::operator[] ( int i ) const { //////////////////////////??????????????????????????????? erese, insert
 
 	 std::vector<const Transformation*>::const_iterator it = transformations.begin();
 
@@ -115,15 +119,6 @@ const Transformation* Complex_Transformation::operator[] ( int i ) const { /////
 
 
 
-/*
-const Transformation& Complex_Transformation::operator>> ( Obj& obj) {
-
-	obj.transform( get_matrix() );
-
-	return *this;
-}*/
-
-
 
 Matrix Complex_Transformation::get_matrix() const {
 
@@ -134,7 +129,7 @@ Matrix Complex_Transformation::get_matrix() const {
 	for ( size_t i = 0; i < transformations.size(); ++i ){
 	
 		m = m * (*transformations[i]).get_matrix();
-		m.rysuj();
+		//m.rysuj();
 	}
 
 	return m;
@@ -156,10 +151,3 @@ Matrix Complex_Transformation::get_inv_matrix() const {
 	return m;
 }
 
-
-/*
-void Complex_Transformation::push ( const Transformation& t ){
-
-	transformations.push_back( t );
-
-}*/
