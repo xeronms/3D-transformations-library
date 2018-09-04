@@ -34,7 +34,7 @@ Complex_Transformation::Complex_Transformation( const Complex_Transformation& t 
 
 	//	 CT = T1 + T2
 
-	transformations = t.transformations; // for i in transformations ??
+	transformations = t.transformations;
 }
 
 
@@ -107,6 +107,19 @@ Transformation& Complex_Transformation::operator[] ( int i ){
 	return *(transformations)[i];
 
 }
+
+
+
+
+Complex_Transformation Complex_Transformation::operator() ( int i ){ // i iterowane od 0
+
+	Complex_Transformation tmp = *this;
+
+	tmp.transformations.erase( tmp.transformations.begin() + i , tmp.transformations.end() );
+
+	return tmp;
+}
+
 
 
 

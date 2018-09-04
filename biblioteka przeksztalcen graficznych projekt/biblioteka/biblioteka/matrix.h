@@ -78,7 +78,7 @@ public:
 
 	void scaling_init( double sx, double sy, double sz );
 
-	void rotation_init( axis os, double angle);
+	void rotation_init( axis os , double angle , double x , double y , double z );
 
 
 

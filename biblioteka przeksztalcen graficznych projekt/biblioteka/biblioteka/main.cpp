@@ -30,21 +30,9 @@ int main(){
 		Scaling s2(1, 1, 3);
 		Scaling s3(1, 0.5, 1);
 
-		Complex_Transformation A = t1;
-
-		Complex_Transformation B = A + t2;
-
-		Complex_Transformation C = B + t3 ;
 		
-		Complex_Transformation D = C + t4 ;
 
-		//D[0][0][0] = r2;
-		
-		//D += - s2;
-
-		//Complex_Transformation E = -D;
-
-		D >> object;
+		//D(4) >> object;
 
 		object.save_file();
 		
@@ -54,3 +42,20 @@ int main(){
 
 	return 0;
 }
+
+
+
+/* 
+		Complex_Transformation A = t1;
+
+		Complex_Transformation B = A + t2;
+
+		Complex_Transformation C = B + t3 ;
+		
+		Complex_Transformation D = C + t4 ;
+
+		D[0][0][0] = r2;
+		
+		D += - s2;
+		Complex_Transformation E = -D;
+*/

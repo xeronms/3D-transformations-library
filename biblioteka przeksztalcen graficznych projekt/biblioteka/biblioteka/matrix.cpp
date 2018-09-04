@@ -113,7 +113,7 @@ void Matrix::scaling_init( double sx, double sy, double sz ){
 
 
 
-void Matrix::rotation_init( axis os, double a){
+void Matrix::rotation_init( axis os, double a, double x0, double y0, double z0 ){
 
 	if (r!=4 || c!=4) throw size_err();
 
@@ -129,6 +129,13 @@ void Matrix::rotation_init( axis os, double a){
 		data[9] = -sin(a);
 		data[10] = cos(a);
 		data[15] = 1;
+		
+		data[3] = x0 - data[0] * x0 - data[1] * y0 - data[2] * z0 ;
+		
+		data[7] = y0 - data[4] * x0 - data[5] * y0 - data[6] * z0 ;
+		
+		data[11] = z0 - data[8] * x0 - data[9] * y0 - data[10] * z0 ;
+
 
 		break;
 
@@ -141,6 +148,14 @@ void Matrix::rotation_init( axis os, double a){
 		data[10] = cos(a);
 		data[15] = 1;
 
+		data[3] = x0 - data[0] * x0 - data[1] * y0 - data[2] * z0 ;
+		
+		data[7] = y0 - data[4] * x0 - data[5] * y0 - data[6] * z0 ;
+		
+		data[11] = z0 - data[8] * x0 - data[9] * y0 - data[10] * z0 ;
+
+		break;
+
 	case z:
 
 		data[0] = cos(a);
@@ -149,6 +164,15 @@ void Matrix::rotation_init( axis os, double a){
 		data[5] = cos(a);
 		data[10] = 1;
 		data[15] = 1;
+
+		
+		data[3] = x0 - data[0] * x0 - data[1] * y0 - data[2] * z0 ;
+		
+		data[7] = y0 - data[4] * x0 - data[5] * y0 - data[6] * z0 ;
+		
+		data[11] = z0 - data[8] * x0 - data[9] * y0 - data[10] * z0 ;
+
+		break;
 
 	default:
 		break;

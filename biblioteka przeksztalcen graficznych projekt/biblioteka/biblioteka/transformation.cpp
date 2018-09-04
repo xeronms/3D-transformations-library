@@ -132,15 +132,15 @@ Scaling::Scaling( const Scaling& t){
 
 
 
-Rotation::Rotation( axis os, double angle ){
+Rotation::Rotation( axis os , double angle , double x , double y , double z ){
 
 	matrix = new Matrix( 4, 4);
 	
-	matrix->rotation_init( os,  (angle*3.14159265)/180 );
+	matrix->rotation_init( os,  (angle*3.14159265)/180, x, y, z );
 
 	inverse =  new Matrix( 4, 4);
 
-	inverse->rotation_init( os,  -(angle*3.14159265)/180 );
+	inverse->rotation_init( os,  -(angle*3.14159265)/180, x, y, z );
 
 }
 

@@ -91,7 +91,7 @@ class Rotation : public Transformation{
 
 public:
 
-	Rotation( axis os = x, double angle = 0);
+	Rotation( axis os = x, double angle = 0, double x = 0, double y = 0, double z = 0 ) ;
 	
 	Rotation( const Rotation& t);
 	
@@ -133,6 +133,8 @@ public:
 	const Transformation& operator[] ( int i ) const;
 
 	Transformation& operator[] ( int i );
+
+	Complex_Transformation operator() ( int i ); // podaje transformacje do i-tego elementu
 	
 	virtual Matrix get_matrix() const ;
 
@@ -140,22 +142,6 @@ public:
 
 };
 
-
-
-// ==========================================================================================================================
-
-
-class Rotation_Arbitrary : public Complex_Transformation{
-
-public:
-
-	Rotation_Arbitrary(){}
-
-	Rotation_Arbitrary( const Rotation_Arbitrary& );
-
-	Rotation_Arbitrary( axis os = x, double angle = 0, double x = 0, double y = 0, double z = 0);
-
-};
 
 
 
