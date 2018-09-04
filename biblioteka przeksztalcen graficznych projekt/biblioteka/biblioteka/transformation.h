@@ -36,6 +36,10 @@ public:
 
 	virtual Transformation& operator- ();
 
+	virtual const Transformation& operator[] ( int i ) const {return *this;}
+
+	virtual Transformation& operator[] ( int i ) {return *this;}
+
 	const Transformation& operator>> ( Obj& obj) const ;
 
 };
@@ -121,14 +125,8 @@ public:
 	virtual Complex_Transformation operator+ ( Transformation& ) const ;
 
 	virtual Transformation& operator- ();
-	
-	//virtual Complex_Transformation operator- ( Transformation& t );
-
-	//virtual const Complex_Transformation operator- ();
 
 	void operator+= (  Transformation& );
-
-	//Complex_Transformation operator+ ( const Complex_Transformation& );
 
 	const Transformation& operator= ( const Complex_Transformation& );
 
@@ -139,6 +137,23 @@ public:
 	virtual Matrix get_matrix() const ;
 
 	virtual Matrix get_inv_matrix() const ;
+
+};
+
+
+
+// ==========================================================================================================================
+
+
+class Rotation_Arbitrary : public Complex_Transformation{
+
+public:
+
+	Rotation_Arbitrary(){}
+
+	Rotation_Arbitrary( const Rotation_Arbitrary& );
+
+	Rotation_Arbitrary( axis os = x, double angle = 0, double x = 0, double y = 0, double z = 0);
 
 };
 

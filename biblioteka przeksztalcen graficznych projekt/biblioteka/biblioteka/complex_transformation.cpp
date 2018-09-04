@@ -53,11 +53,15 @@ Complex_Transformation Complex_Transformation::operator+ ( Transformation& t ) c
 
 
 
-Transformation& Complex_Transformation::operator- (){ //////////////////////////////////////////////////////////////////////////////
+Transformation& Complex_Transformation::operator- (){ 
+
+	std::vector <Transformation*> tmp = transformations;
 
 	for ( size_t i=0; i<transformations.size(); ++i ){
 	
-		- (*transformations[i]) ;
+		- (*tmp[i]) ;
+
+		transformations[ transformations.size() - (i+1) ] = tmp[i];
 
 	}
 
@@ -103,20 +107,6 @@ Transformation& Complex_Transformation::operator[] ( int i ){
 	return *(transformations)[i];
 
 }
-
-/*
-
-const Transformation* Complex_Transformation::operator[] ( int i ) const { //////////////////////////??????????????????????????????? erese, insert
-
-	 std::vector<const Transformation*>::const_iterator it = transformations.begin();
-
-	for ( int j = 0; j<i; ++j, ++it){}
-
-	return *it;
-
-}
-*/
-
 
 
 

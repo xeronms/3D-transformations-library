@@ -15,53 +15,36 @@ int main(){
 		object.load_points();
 		object.load_triangles();
 
-		Translation T(0,5,0);
 
-		Translation T2(0,-0.20,-1);
+		Rotation r1 (x, 180);
+		Rotation r2 (z, -90);
+		Rotation r3 (z, 30);
+		Rotation r4 (x, -120);
 
-		Translation T3(10,0,-5);
+		Translation t1(2);
+		Translation t2(-5,3,0);
+		Translation t3(0,-2,-2);
+		Translation t4(2, 6, 1);
 
-		Scaling S( 0.8, 0.8, 0.8);
+		Scaling s1(1.2);
+		Scaling s2(1, 1, 3);
+		Scaling s3(1, 0.5, 1);
+
+		Complex_Transformation A = t1;
+
+		Complex_Transformation B = A + t2;
+
+		Complex_Transformation C = B + t3 ;
 		
-		Scaling S2(10,10,10);
+		Complex_Transformation D = C + t4 ;
 
-		Scaling S3 (0.5);
+		//D[0][0][0] = r2;
+		
+		//D += - s2;
 
-		Rotation R(z,-180);
+		//Complex_Transformation E = -D;
 
-		Rotation R2(y,90);
-
-
-		Complex_Transformation CT2 = T2 + S2 + T;
-
-		Complex_Transformation CT = R + R2 + CT2 + S3 + T3 + S;
-				
-
-
-		Translation a1 ( 100 );
-		Translation a2 ( 0, 0, -50);
-		Scaling b1 ( 0.5 );
-		Scaling b2 ( 10, 10, 10);
-		Rotation c1( z, 90);
-		Rotation c2( x, 120);
-
-		Complex_Transformation B = ( a2 + b2);
-
-		Complex_Transformation A = a1 + b1  + B + c1;
-
-		CT += A;
-
-		CT += c2;
-
-		//CT - B; ???
-
-		Complex_Transformation C = T2 - B + CT + T ;
-
-		C[1] = a2;
-
-		C[1].get_matrix().rysuj();
-
-		C >> object;
+		D >> object;
 
 		object.save_file();
 		

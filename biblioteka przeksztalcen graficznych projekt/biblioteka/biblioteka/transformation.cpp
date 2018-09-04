@@ -57,6 +57,7 @@ Transformation& Transformation::operator- (){
 
 
 
+
 const Transformation& Transformation::operator>> ( Obj& obj) const {
 
 	obj.transform( get_matrix() );
