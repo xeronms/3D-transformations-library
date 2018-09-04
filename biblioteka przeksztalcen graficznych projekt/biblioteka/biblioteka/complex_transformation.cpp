@@ -129,7 +129,7 @@ Matrix Complex_Transformation::get_matrix() const {
 	for ( size_t i = 0; i < transformations.size(); ++i ){
 	
 		m = m * (*transformations[i]).get_matrix();
-		//m.rysuj();
+		m.rysuj();
 	}
 
 	return m;

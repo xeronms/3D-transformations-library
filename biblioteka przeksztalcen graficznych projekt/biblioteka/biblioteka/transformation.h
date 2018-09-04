@@ -32,7 +32,7 @@ public:
 
 	virtual Complex_Transformation operator+ ( Transformation& ) ;
 
-	Complex_Transformation operator- ( Transformation& t );
+	virtual Complex_Transformation operator- ( Transformation& t );
 
 	virtual Transformation& operator- ();
 
@@ -54,6 +54,8 @@ public:
 
 	Translation( const Translation& t);
 
+	~Translation(){delete matrix; delete inverse; }
+
 
 };
 
@@ -71,6 +73,7 @@ public:
 
 	Scaling( const Scaling& t);
 
+	~Scaling(){delete matrix; delete inverse; }
 
 };
 
@@ -88,6 +91,7 @@ public:
 	
 	Rotation( const Rotation& t);
 	
+	~Rotation(){delete matrix; delete inverse; }
 
 };
 

@@ -61,9 +61,9 @@ int main(){
 
 		C[1].get_matrix().rysuj();
 
-		//C >> object;
+		C >> object;
 
-		//object.save_file();
+		object.save_file();
 		
         }
 		catch (error){ printf("ERRrrrr\n");}
