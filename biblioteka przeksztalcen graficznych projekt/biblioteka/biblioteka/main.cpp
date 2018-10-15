@@ -30,9 +30,10 @@ int main(){
 		Scaling s2(1, 1, 3);
 		Scaling s3(1, 0.5, 1);
 
-		
+		Rotation a( x , 65, 140, -50, -30);
 
-		//D(4) >> object;
+
+		r1 + s1 + t1 >> object;
 
 		object.save_file();
 		
