@@ -27,7 +27,7 @@ T + S + R
 which gives us a resultant transformation that changes the points of 3d object
 
 
-After all the new shape of an object is again saved in .obj file.
+At the end the new shape of an object can again be saved in .obj file.
 
 
 For all calculations the stack of matrix is used.
